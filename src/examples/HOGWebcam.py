@@ -15,7 +15,7 @@ cap = cv2.VideoCapture(0)
 
 # the output will be written to output.avi
 out = cv2.VideoWriter(
-    'output.avi',
+    '../../output/output.avi',
     cv2.VideoWriter_fourcc(*'MJPG'),
     15.,
     (640, 480))
