@@ -1,0 +1,3 @@
+[submodule "examples/OpenCV-Python-Series"]
+	path = examples/OpenCV-Python-Series
+	url = https://github.com/dominikfladung/OpenCV-Python-Series
