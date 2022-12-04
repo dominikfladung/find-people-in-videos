@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 .idea
+/examples/images/dominik_fladung
+/examples/images/**/*.*.detect.jpg
