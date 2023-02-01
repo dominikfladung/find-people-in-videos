@@ -21,12 +21,18 @@ class FaceDetector(Recognizer):
         for (x, y, w, h) in faces:
             # predict the label of the face
             label, confidence = self.recognizer.predict(gray[y:y + h, x:x + w])
-            face_detections.append(FaceDetection(label, confidence, x, y, w, h))
+            detection = FaceDetection(label, confidence, x, y, w, h)
+            face_detections.append(detection)
 
             if mark_face:
-                # draw the label and confidence on the frame
-                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                cv2.putText(frame, "Label: {}, {}%".format(label, round(confidence)), (x, y - 10),
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                self.mark_face(frame, detection)
 
         return face_detections
+
+    def mark_face(self, frame, detection):
+        # draw the label and confidence on the frame
+        cv2.rectangle(frame, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
+                      (0, 255, 0), 2)
+        cv2.putText(frame, "Label: {}, {}%".format(detection.label, round(detection.confidence)),
+                    (detection.x, detection.y - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
