@@ -5,6 +5,10 @@ from src.Recognizer import Recognizer
 
 
 class FaceDetector(Recognizer):
+    def __init__(self):
+        super().__init__()
+        self.debugging = False
+
     def load_model(self, model_path='model.xml'):
         # load the model from the given path
         self.recognizer.read(model_path)
