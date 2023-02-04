@@ -15,7 +15,7 @@ class ModelTrainer(FaceRecognizer):
         It takes the images and labels from the prepare_dataset function and trains the recognizer with
         them
         """
-        faces, labels = self.prepare_dataset("traindata")
+        faces, labels = self.prepare_dataset("../traindata")
         print("Start Training")
         self.recognizer.train(faces, np.array(labels))
 

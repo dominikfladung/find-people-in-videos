@@ -8,7 +8,7 @@ from src.PeopleRegisterManager import PeopleRegisterManager
 
 
 class FaceRecognizer:
-    def __init__(self, cascade_classifier='cascades/data/haarcascade_frontalface_default.xml', debugging=False):
+    def __init__(self, cascade_classifier='../cascades/data/haarcascade_frontalface_default.xml', debugging=False):
         self.face_cascade = cv2.CascadeClassifier(cascade_classifier)
         self.recognizer = cv2.face.LBPHFaceRecognizer_create()
         self.people_register_manager = PeopleRegisterManager()

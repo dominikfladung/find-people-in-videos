@@ -24,7 +24,7 @@ class PrepareTrainData:
         It takes the path of the directory containing the training data, and renames the files in each
         subdirectory to the name of the subdirectory.
         """
-        path = "traindata"
+        path = "../traindata"
         dirs = os.listdir(path)
         for dir in dirs:
             self.rename_files(path + "/" + dir)
