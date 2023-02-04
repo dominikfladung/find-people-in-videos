@@ -5,17 +5,16 @@ import os
 import cv2
 import numpy as np
 import time
-from src.Recognizer import Recognizer
+from src.FaceRecognizer import FaceRecognizer
 from progress.bar import Bar
 
 
-class ModelTrainer(Recognizer):
+class ModelTrainer(FaceRecognizer):
     def train(self):
         """
         It takes the images and labels from the prepare_dataset function and trains the recognizer with
         them
         """
-
         faces, labels = self.prepare_dataset("traindata")
         print("Start Training")
         self.recognizer.train(faces, np.array(labels))
@@ -29,24 +28,19 @@ class ModelTrainer(Recognizer):
         """
         self.recognizer.write(path)
 
-    # Function to detect the face and return the coordinates
-    def detect_face(self, img):
+    def crop_face(self, image):
         """
-        It takes an image as input and returns an image with rectangles around the faces and the
-        coordinates of the rectangles
-
-        :param img: The image in which we want to detect faces
-        :return: The face_img is the image with the rectangle drawn on it. The face_rects is the
-        coordinates of the rectangle.
+        Function to detect the face and crop it
+        :param image: The image in which we want to detect faces
+        :return: cropped image or None if no face was found
         """
-        face_img = img.copy()
-        face_rects = self.face_cascade.detectMultiScale(face_img)
+        face_detections = self.detect_faces(image)
 
-        for (x, y, w, h) in face_rects:
-            cv2.rectangle(face_img, (x, y), (x + w, y + h),
-                          (255, 255, 255), 10)
+        if len(face_detections) == 0:
+            return None
 
-        return face_img, face_rects
+        (x, y, w, h) = face_detections[0]  # the datasets are only images with one face
+        return image[x:w, y:h]
 
     def prepare_dataset(self, data_folder_path):
         """
@@ -78,7 +72,7 @@ class ModelTrainer(Recognizer):
         cv2.waitKey(1)
         cv2.destroyAllWindows()
 
-        self.set_people_register(people_register)
+        self.people_register_manager.set_people_register(people_register)
 
         print("")
         print("Done preparing dataset")
@@ -111,10 +105,12 @@ class ModelTrainer(Recognizer):
                 image = cv2.imread(image_path)
                 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-                face_img, rect = self.detect_face(gray)
+                face_image = self.crop_face(gray)
 
-                faces.append(face_img)
-                labels.append(people_counter)
+                if face_image is not None and face_image.any():
+                    faces.append(face_image)
+                    labels.append(people_counter)
+
                 bar.next()
 
 

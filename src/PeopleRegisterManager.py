@@ -1,19 +1,13 @@
 """
-The Recognizer class is a base class that contains the methods for handling people register and base methods for face detection
+class to handle people_register.json. This register is used to map between the label(int) and the name of the person
 """
-import cv2
 import json
 import os
 
 
-class Recognizer:
+class PeopleRegisterManager:
     def __init__(self):
         self.register_json_path = '../output/people_register.json'
-        # Load the Haar cascades
-        self.face_cascade = cv2.CascadeClassifier(
-            'cascades/data/haarcascade_frontalface_default.xml')
-        # Initialize the recognizer
-        self.recognizer = cv2.face.LBPHFaceRecognizer_create()
         self.people_register = self.get_people_register()
 
     def get_people_register(self):

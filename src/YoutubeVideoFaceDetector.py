@@ -4,11 +4,11 @@ detect faces in the video
 """
 import re
 
-from src.VideoFaceDetector import VideoFaceDetector
+from src.VideoFaceDetector import VideoFaceRecognizer
 from src.YoutubeDownloader import YoutubeDownloader
 
 
-class YoutubeVideoFaceDetector(VideoFaceDetector):
+class YoutubeVideoFaceDetector(VideoFaceRecognizer):
     @staticmethod
     def make_url_filename_safe(url):
         """
@@ -34,5 +34,5 @@ class YoutubeVideoFaceDetector(VideoFaceDetector):
 
 
 if __name__ == "__main__":
-    url = input("Url: ")
-    YoutubeVideoFaceDetector().run(url)
+    input_url = input("Url: ")
+    YoutubeVideoFaceDetector().run(input_url)

@@ -4,10 +4,10 @@ This class is a subclass of the FaceDetector class, and it is used to detect fac
 import cv2
 import imageio
 
-from src.FaceDetector import FaceDetector
+from src.FaceRecognizer import FaceRecognizer
 
 
-class VideoFaceDetector(FaceDetector):
+class VideoFaceRecognizer(FaceRecognizer):
     def run(self, filename, model_path='../output/model.xml'):
         """
         It takes a video file, runs the face recognition algorithm on each frame, and outputs a new
@@ -44,7 +44,8 @@ class VideoFaceDetector(FaceDetector):
         cv2.destroyAllWindows()
         video_writer.close()
 
-    def display_frame(self, frame, i, max_frame_index):
+    @staticmethod
+    def display_frame(frame, i, max_frame_index):
         """
         It displays the frame and sets the window title to the current frame number and the total number
         of frames
@@ -59,4 +60,4 @@ class VideoFaceDetector(FaceDetector):
 
 if __name__ == "__main__":
     path = input('Enter the path to the video file: ')
-    VideoFaceDetector().run(filename=path)
+    VideoFaceRecognizer().run(filename=path)

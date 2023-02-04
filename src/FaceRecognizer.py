@@ -1,17 +1,20 @@
 """
-This class is a subclass of the Recognizer class, and it has a method called detect_faces that
-takes in an image and returns a list of bounding boxes for each face detected in the image
+The Recognizer class is a base class that contains the methods for handling people register and base methods for face detection
 """
 import cv2
 
-from src.FaceDetection import FaceDetection
-from src.Recognizer import Recognizer
+from src.FaceRecognition import FaceRecognition
+from src.PeopleRegisterManager import PeopleRegisterManager
 
 
-class FaceDetector(Recognizer):
-    def __init__(self):
-        super().__init__()
-        self.debugging = False
+class FaceRecognizer:
+    def __init__(self, cascade_classifier='cascades/data/haarcascade_frontalface_default.xml', debugging=False):
+        # Load the Haar cascades
+        self.face_cascade = cv2.CascadeClassifier(cascade_classifier)
+        # Initialize the recognizer
+        self.recognizer = cv2.face.LBPHFaceRecognizer_create()
+        self.people_register_manager = PeopleRegisterManager()
+        self.debugging = debugging
 
     def load_model(self, model_path='../output/model.xml'):
         """
@@ -21,19 +24,6 @@ class FaceDetector(Recognizer):
         """
         # load the model from the given path
         self.recognizer.read(model_path)
-
-    def detect_faces(self, frame):
-        """
-        It takes a frame as input, and returns a list of rectangles where it thinks it found a face
-
-        :param frame: The frame to detect faces in
-        :return: The detectMultiScale function is a general function that detects objects. Since we are
-        calling it on the face cascade, that’s what it detects. The first option is the grayscale image.
-        The second is the scaleFactor. Since some faces may be closer to the camera, they would appear
-        bigger than the faces in the back. The scale factor compensates for this. The detection
-        algorithm
-        """
-        return self.face_cascade.detectMultiScale(frame, 1.3, 5)
 
     def recognize(self, frame, mark_face=True):
         """
@@ -47,19 +37,31 @@ class FaceDetector(Recognizer):
         """
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         faces = self.detect_faces(gray)
-
         face_detections = []
 
         for (x, y, w, h) in faces:
             # predict the label of the face
             label, confidence = self.recognizer.predict(gray[y:y + h, x:x + w])
-            detection = FaceDetection(label, confidence, x, y, w, h)
+            detection = FaceRecognition(label, confidence, x, y, w, h)
             face_detections.append(detection)
 
             if mark_face:
                 self.mark_face(frame, detection)
 
         return face_detections
+
+    def detect_faces(self, frame):
+        """
+        It takes a frame as input, and returns a list of rectangles where it thinks it found a face
+
+        :param frame: The frame to detect faces in
+        :return: The detectMultiScale function is a general function that detects objects. Since we are
+        calling it on the face cascade, that’s what it detects. The first option is the grayscale image.
+        The second is the scaleFactor. Since some faces may be closer to the camera, they would appear
+        bigger than the faces in the back. The scale factor compensates for this. The detection
+        algorithm
+        """
+        return self.face_cascade.detectMultiScale(frame, 1.3, 5)
 
     def mark_face(self, frame, detection):
         """

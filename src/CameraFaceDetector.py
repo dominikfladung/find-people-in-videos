@@ -4,10 +4,10 @@ It's a face detector that uses a camera to detect faces
 
 import cv2
 
-from src.FaceDetector import FaceDetector
+from src.FaceRecognizer import FaceRecognizer
 
 
-class CameraFaceDetector(FaceDetector):
+class CameraFaceRecognizer(FaceRecognizer):
     def run(self, model_path='../output/model.xml'):
         """
         It loads the model, captures the video from the webcam, and then runs the model on the video
@@ -42,4 +42,4 @@ class CameraFaceDetector(FaceDetector):
 
 
 if __name__ == "__main__":
-    CameraFaceDetector().run()
+    CameraFaceRecognizer().run()

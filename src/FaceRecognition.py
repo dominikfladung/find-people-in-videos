@@ -3,7 +3,7 @@ This class is a data structure that holds the information of a face detected by 
 """
 
 
-class FaceDetection:
+class FaceRecognition:
     def __init__(self, label, confidence, x, y, w, h):
         self.label = label
         self.confidence = confidence

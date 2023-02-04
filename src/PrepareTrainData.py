@@ -3,6 +3,7 @@ This class prepares the training data by renaming the files in the traindata fol
 """
 import os
 
+
 class PrepareTrainData:
     @staticmethod
     def rename_files(filepath):

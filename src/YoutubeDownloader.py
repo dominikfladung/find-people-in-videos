@@ -3,8 +3,10 @@ This class is used to download videos from youtube
 """
 import youtube_dl
 
+
 class YoutubeDownloader:
-    def download(self, url, name):
+    @staticmethod
+    def download(url, name):
         """
         It downloads the video from the url and saves it as the name
         
@@ -20,7 +22,7 @@ class YoutubeDownloader:
 
 
 if __name__ == "__main__":
-    url = input("Url")
-    name = input("Name")
-    name = 'videos/' + name + '.mp4'
-    YoutubeDownloader().download(url, name)
+    input_url = input("Url")
+    input_name = input("Name")
+    input_name = 'videos/' + input_name + '.mp4'
+    YoutubeDownloader().download(input_url, input_name)
