@@ -4,8 +4,16 @@ import imageio
 from src.FaceDetector import FaceDetector
 
 
+# > This class is a subclass of the FaceDetector class, and it is used to detect faces in a video.
 class VideoFaceDetector(FaceDetector):
     def run(self, filename, model_path='../output/model.xml'):
+        """
+        It takes a video file, runs the face recognition algorithm on each frame, and outputs a new
+        video file with the face recognition results
+        
+        :param filename: The path to the video file you want to process
+        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
+        """
         self.load_model(model_path)
 
         output_filename = filename + 'detected.mp4'
@@ -35,9 +43,18 @@ class VideoFaceDetector(FaceDetector):
         video_writer.close()
 
     def display_frame(self, frame, i, max_frame_index):
+        """
+        It displays the frame and sets the window title to the current frame number and the total number
+        of frames
+        
+        :param frame: the frame to display
+        :param i: the current frame index
+        :param max_frame_index: The total number of frames in the video
+        """
         cv2.imshow("Frame", frame)
         cv2.setWindowTitle('Frame', str(i) + ' / ' + str(max_frame_index))
 
 
 if __name__ == "__main__":
-    VideoFaceDetector().run(filename='videos/got.mp4')
+    path = input('Enter the path to the video file: ')
+    VideoFaceDetector().run(filename=path)

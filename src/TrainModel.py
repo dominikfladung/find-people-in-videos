@@ -5,16 +5,35 @@ import time
 from src.Recognizer import Recognizer
 
 
+# `ModelTrainer` is a subclass of `Recognizer` that can be used to train a model
 class ModelTrainer(Recognizer):
     def train(self):
+        """
+        It takes the images and labels from the prepare_dataset function and trains the recognizer with
+        them
+        """
         faces, labels = self.prepare_dataset("traindata")
         self.recognizer.train(faces, np.array(labels))
 
     def save(self, path='../output/model.xml'):
+        """
+        It saves the model to a file
+        
+        :param path: The path to the file where the model will be saved, defaults to ../output/model.xml
+        (optional)
+        """
         self.recognizer.write(path)
 
     # Function to detect the face and return the coordinates
     def detect_face(self, img):
+        """
+        It takes an image as input and returns an image with rectangles around the faces and the
+        coordinates of the rectangles
+        
+        :param img: The image in which we want to detect faces
+        :return: The face_img is the image with the rectangle drawn on it. The face_rects is the
+        coordinates of the rectangle.
+        """
         face_img = img.copy()
         face_rects = self.face_cascade.detectMultiScale(face_img)
 
@@ -23,8 +42,16 @@ class ModelTrainer(Recognizer):
 
         return face_img, face_rects
 
-    # Function to prepare the dataset
+
     def prepare_dataset(self, data_folder_path):
+        """
+        It takes a folder path as input, and returns two lists: one containing the images, and the other
+        containing the labels
+        
+        :param data_folder_path: The path to the folder that contains the images of the people you want
+        to recognize
+        :return: faces and labels
+        """
         # Get the directories
         dirs = os.listdir(data_folder_path)
 
@@ -49,6 +76,18 @@ class ModelTrainer(Recognizer):
         return faces, labels
 
     def prepare_dataset_folder(self, dir_path, faces, labels, people_counter):
+        """
+        It takes a directory path, a list of faces, a list of labels, and a people counter. It then gets
+        the images names that are inside the given subject directory, goes through each image name and
+        reads the image, and then appends the face image and the label to the lists.
+        
+        :param dir_path: The path to the directory that contains the images of the person we want to
+        train the model on
+        :param faces: A list of face images
+        :param labels: A list of labels, i.e. the names of the people on the images
+        :param people_counter: The number of people in the dataset
+        :return: The face_img and rect are being returned.
+        """
         # Get the images names that are inside the given subject directory
         is_dir = os.path.isdir(dir_path)
         if not is_dir:

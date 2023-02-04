@@ -1,8 +1,15 @@
 import youtube_dl
 
 
+# > This class is used to download videos from youtube
 class YoutubeDownloader:
     def download(self, url, name):
+        """
+        It downloads the video from the url and saves it as the name
+        
+        :param url: The URL of the video you want to download
+        :param name: The name of the file to be downloaded
+        """
         ydl_opts = {
             'format': 'bestvideo[ext=mp4]',
             'outtmpl': name,
