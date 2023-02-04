@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 import time
 from src.Recognizer import Recognizer
+from progress.bar import Bar
 
 
 class ModelTrainer(Recognizer):
@@ -14,7 +15,9 @@ class ModelTrainer(Recognizer):
         It takes the images and labels from the prepare_dataset function and trains the recognizer with
         them
         """
+
         faces, labels = self.prepare_dataset("traindata")
+        print("Start Training")
         self.recognizer.train(faces, np.array(labels))
 
     def save(self, path='../output/model.xml'):
@@ -62,19 +65,23 @@ class ModelTrainer(Recognizer):
         people_counter = 0
         people_register = dict()
 
+        print("Start preparing dataset")
+
         # Let's go through each directory and read images within it
         for dir_name in dirs:
             people_counter += 1
             people_register[people_counter] = dir_name
             dir_path = data_folder_path + "/" + dir_name
-            self.prepare_dataset_folder(
-                dir_path, faces, labels, people_counter)
+            self.prepare_dataset_folder(dir_path, faces, labels, people_counter)
 
         cv2.destroyAllWindows()
         cv2.waitKey(1)
         cv2.destroyAllWindows()
 
         self.set_people_register(people_register)
+
+        print("")
+        print("Done preparing dataset")
 
         return faces, labels
 
@@ -97,23 +104,24 @@ class ModelTrainer(Recognizer):
             return
 
         images_names = os.listdir(dir_path)
+        with Bar('Running: ' + dir_path, suffix='%(percent).1f%%', max=len(images_names)) as bar:
+            # go through each image name and read image
+            for i, image_name in enumerate(images_names):
+                image_path = dir_path + "/" + image_name
+                image = cv2.imread(image_path)
+                gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-        # go through each image name and read image
-        for image_name in images_names:
-            image_path = dir_path + "/" + image_name
-            image = cv2.imread(image_path)
-            gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+                face_img, rect = self.detect_face(gray)
 
-            face_img, rect = self.detect_face(gray)
-
-            faces.append(face_img)
-            labels.append(people_counter)
+                faces.append(face_img)
+                labels.append(people_counter)
+                bar.next()
 
 
 if __name__ == "__main__":
-    start_time = time.time_ns()
+    start_time = time.time()
     trainer = ModelTrainer()
     trainer.train()
     trainer.save()
-    duration = start_time - time.time_ns()
-    print("Done in", duration)
+    duration = time.time() - start_time
+    print("Done in", str(duration) + "s")
