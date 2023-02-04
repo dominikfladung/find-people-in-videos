@@ -5,4 +5,3 @@ pillow==9.4.0
 opencv-python==4.7.0.68
 imageio==2.25.0
 youtube_dl==2021.12.17
-pdoc3==0.10.0

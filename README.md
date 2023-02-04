@@ -28,3 +28,12 @@ This command prepares the project and installs the necessary packages.
   - Alter
   - Größe
   - Augenfarbe
+
+## Documentation
+
+- Build with [pdoc – Generate API Documentation for Python Projects](https://pdoc.dev/)
+- To Build the docs:
+  
+```shell
+pdoc .\src\ -o ./docs
+```
