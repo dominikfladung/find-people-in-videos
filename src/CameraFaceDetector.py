@@ -5,7 +5,7 @@ from src.FaceDetector import FaceDetector
 
 
 class CameraFaceDetector(FaceDetector):
-    def run(self, model_path="model.xml"):
+    def run(self, model_path='../output/model.xml'):
         self.load_model(model_path)
 
         # initialize the video capture

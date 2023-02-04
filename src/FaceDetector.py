@@ -9,7 +9,7 @@ class FaceDetector(Recognizer):
         super().__init__()
         self.debugging = False
 
-    def load_model(self, model_path='model.xml'):
+    def load_model(self, model_path='../output/model.xml'):
         # load the model from the given path
         self.recognizer.read(model_path)
 
@@ -37,6 +37,7 @@ class FaceDetector(Recognizer):
         # draw the label and confidence on the frame
         cv2.rectangle(frame, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
                       (0, 255, 0), 2)
-        cv2.putText(frame, "Label: {}, {}%".format(detection.label, round(detection.confidence)),
+        label = self.get_person_name(detection.label)
+        cv2.putText(frame, "{}, {}%".format(label, round(detection.confidence)),
                     (detection.x, detection.y - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)

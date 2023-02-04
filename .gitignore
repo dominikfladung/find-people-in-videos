@@ -132,4 +132,3 @@ dmypy.json
 /examples/images/dominik_fladung
 /**/dominik_fladung/**
 /examples/images/**/*.*.detect.jpg
-model.xml

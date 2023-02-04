@@ -9,7 +9,7 @@ class YoutubeVideoFaceDetector(VideoFaceDetector):
     def make_url_filename_safe(url):
         return re.sub('[^\w\-_\. ]', '_', url)
 
-    def run(self, url, model_path="model.xml"):
+    def run(self, url, model_path='../output/model.xml'):
         filename = "videos/" + self.make_url_filename_safe(url) + ".mp4"
         YoutubeDownloader().download(url, filename)
         super().run(filename, model_path)

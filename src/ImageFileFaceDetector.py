@@ -4,7 +4,7 @@ from src.FaceDetector import FaceDetector
 
 
 class ImageFileFaceDetector(FaceDetector):
-    def run(self, model_path="model.xml"):
+    def run(self, model_path='../output/model.xml'):
         self.load_model(model_path)
 
         for frame in self.get_images("traindata/kit_harington"):

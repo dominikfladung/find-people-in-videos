@@ -5,7 +5,7 @@ from src.FaceDetector import FaceDetector
 
 
 class VideoFaceDetector(FaceDetector):
-    def run(self, filename, model_path="model.xml"):
+    def run(self, filename, model_path='../output/model.xml'):
         self.load_model(model_path)
 
         output_filename = filename + 'detected.mp4'
