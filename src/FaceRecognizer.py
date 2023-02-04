@@ -8,7 +8,7 @@ from src.PeopleRegisterManager import PeopleRegisterManager
 
 
 class FaceRecognizer:
-    def __init__(self, cascade_classifier='../cascades/data/haarcascade_frontalface_default.xml', debugging=False):
+    def __init__(self, cascade_classifier='../../cascades/data/haarcascade_frontalface_default.xml', debugging=False):
         self.face_cascade = cv2.CascadeClassifier(cascade_classifier)
         self.recognizer = cv2.face.LBPHFaceRecognizer_create()
         self.people_register_manager = PeopleRegisterManager()
@@ -70,8 +70,11 @@ class FaceRecognizer:
         :param detection: The detection object returned by the detector
         """
         # draw the label and confidence on the image
-        cv2.rectangle(image, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
-                      (0, 255, 0), 2)
+        self.rectangle_around_face(detection, image)
         label = self.people_register_manager.get_person_name(detection.label)
         cv2.putText(image, f"{label}, {round(detection.confidence)}%", (detection.x, detection.y - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+
+    def rectangle_around_face(self, image, detection):
+        cv2.rectangle(image, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
+                      (0, 255, 0), 2)

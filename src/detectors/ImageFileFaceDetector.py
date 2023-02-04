@@ -21,17 +21,15 @@ class ImageFileFaceRecognizer(FaceRecognizer):
         for frame in self.get_images(path):
             face_detections = self.recognize(frame)
             print(face_detections)
+            self.show_frame(frame)
 
-            ratio = frame.shape[1] / frame.shape[0]
-            height = 800
-            width = round(height * ratio)
-            smaller_frame = cv2.resize(frame, (width, height))
-            cv2.imshow("Frame", smaller_frame)
-
-            while True:
-                key = cv2.waitKey(1) & 0xFF
-                if key == ord("q"):
-                    break
+    def show_frame(self, frame):
+        ratio = frame.shape[1] / frame.shape[0]
+        height = 800
+        width = round(height * ratio)
+        smaller_frame = cv2.resize(frame, (width, height))
+        cv2.imshow("Frame", smaller_frame)
+        cv2.waitKey()
 
     def get_images(self, path):
         """

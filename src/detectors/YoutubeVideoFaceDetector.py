@@ -4,8 +4,8 @@ detect faces in the video
 """
 import re
 
-from src.VideoFaceDetector import VideoFaceRecognizer
-from src.YoutubeDownloader import YoutubeDownloader
+from src.detectors.VideoFaceDetector import VideoFaceRecognizer
+from src.utils.YoutubeDownloader import YoutubeDownloader
 
 
 class YoutubeVideoFaceDetector:
