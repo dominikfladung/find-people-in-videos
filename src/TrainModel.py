@@ -1,3 +1,6 @@
+"""
+`ModelTrainer` is a subclass of `Recognizer` that can be used to train a model
+"""
 import os
 import cv2
 import numpy as np
@@ -5,7 +8,6 @@ import time
 from src.Recognizer import Recognizer
 
 
-# `ModelTrainer` is a subclass of `Recognizer` that can be used to train a model
 class ModelTrainer(Recognizer):
     def train(self):
         """
@@ -18,7 +20,7 @@ class ModelTrainer(Recognizer):
     def save(self, path='../output/model.xml'):
         """
         It saves the model to a file
-        
+
         :param path: The path to the file where the model will be saved, defaults to ../output/model.xml
         (optional)
         """
@@ -29,7 +31,7 @@ class ModelTrainer(Recognizer):
         """
         It takes an image as input and returns an image with rectangles around the faces and the
         coordinates of the rectangles
-        
+
         :param img: The image in which we want to detect faces
         :return: The face_img is the image with the rectangle drawn on it. The face_rects is the
         coordinates of the rectangle.
@@ -38,16 +40,16 @@ class ModelTrainer(Recognizer):
         face_rects = self.face_cascade.detectMultiScale(face_img)
 
         for (x, y, w, h) in face_rects:
-            cv2.rectangle(face_img, (x, y), (x + w, y + h), (255, 255, 255), 10)
+            cv2.rectangle(face_img, (x, y), (x + w, y + h),
+                          (255, 255, 255), 10)
 
         return face_img, face_rects
-
 
     def prepare_dataset(self, data_folder_path):
         """
         It takes a folder path as input, and returns two lists: one containing the images, and the other
         containing the labels
-        
+
         :param data_folder_path: The path to the folder that contains the images of the people you want
         to recognize
         :return: faces and labels
@@ -65,7 +67,8 @@ class ModelTrainer(Recognizer):
             people_counter += 1
             people_register[people_counter] = dir_name
             dir_path = data_folder_path + "/" + dir_name
-            self.prepare_dataset_folder(dir_path, faces, labels, people_counter)
+            self.prepare_dataset_folder(
+                dir_path, faces, labels, people_counter)
 
         cv2.destroyAllWindows()
         cv2.waitKey(1)
@@ -80,7 +83,7 @@ class ModelTrainer(Recognizer):
         It takes a directory path, a list of faces, a list of labels, and a people counter. It then gets
         the images names that are inside the given subject directory, goes through each image name and
         reads the image, and then appends the face image and the label to the lists.
-        
+
         :param dir_path: The path to the directory that contains the images of the person we want to
         train the model on
         :param faces: A list of face images

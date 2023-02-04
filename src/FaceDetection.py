@@ -1,4 +1,8 @@
-# > This class is a data structure that holds the information of a face detected by the face detection algorithm.
+"""
+This class is a data structure that holds the information of a face detected by the face detection algorithm.
+"""
+
+
 class FaceDetection:
     def __init__(self, label, confidence, x, y, w, h):
         self.label = label

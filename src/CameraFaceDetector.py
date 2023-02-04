@@ -1,10 +1,12 @@
-# import the necessary packages
+"""
+It's a face detector that uses a camera to detect faces
+"""
+
 import cv2
 
 from src.FaceDetector import FaceDetector
 
 
-# It's a face detector that uses a camera to detect faces
 class CameraFaceDetector(FaceDetector):
     def run(self, model_path='../output/model.xml'):
         """

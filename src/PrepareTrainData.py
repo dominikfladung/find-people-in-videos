@@ -1,7 +1,8 @@
+"""
+This class prepares the training data by renaming the files in the traindata folder
+"""
 import os
 
-
-# This class prepares the training data by renaming the files in the traindata folder
 class PrepareTrainData:
     @staticmethod
     def rename_files(filepath):

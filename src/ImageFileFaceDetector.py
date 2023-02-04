@@ -1,15 +1,17 @@
+"""
+It's a face detector that uses the OpenCV library to detect faces in images
+"""
 import os
 import cv2
 from src.FaceDetector import FaceDetector
 
 
-# It's a face detector that uses the OpenCV library to detect faces in images
 class ImageFileFaceDetector(FaceDetector):
     def run(self, model_path='../output/model.xml'):
         """
         It loads the model, then for each image in the folder, it detects faces and prints the results,
         then it resizes the image and displays it
-        
+
         :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
         """
         self.load_model(model_path)
@@ -33,7 +35,7 @@ class ImageFileFaceDetector(FaceDetector):
         """
         It takes a path to a directory, reads all the images in that directory, and returns a list of
         images
-        
+
         :param path: The path to the folder containing the images
         :return: A list of images
         """

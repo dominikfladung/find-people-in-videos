@@ -1,7 +1,8 @@
+"""
+This class is used to download videos from youtube
+"""
 import youtube_dl
 
-
-# > This class is used to download videos from youtube
 class YoutubeDownloader:
     def download(self, url, name):
         """

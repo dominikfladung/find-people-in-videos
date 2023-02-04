@@ -1,11 +1,13 @@
+"""
+This class is a subclass of the Recognizer class, and it has a method called detect_faces that
+takes in an image and returns a list of bounding boxes for each face detected in the image
+"""
 import cv2
 
 from src.FaceDetection import FaceDetection
 from src.Recognizer import Recognizer
 
 
-# > This class is a subclass of the Recognizer class, and it has a method called detect_faces that
-# takes in an image and returns a list of bounding boxes for each face detected in the image
 class FaceDetector(Recognizer):
     def __init__(self):
         super().__init__()
@@ -14,7 +16,7 @@ class FaceDetector(Recognizer):
     def load_model(self, model_path='../output/model.xml'):
         """
         The function reads the model from the given path and loads it into the recognizer.
-        
+
         :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
         """
         # load the model from the given path
@@ -23,7 +25,7 @@ class FaceDetector(Recognizer):
     def detect_faces(self, frame):
         """
         It takes a frame as input, and returns a list of rectangles where it thinks it found a face
-        
+
         :param frame: The frame to detect faces in
         :return: The detectMultiScale function is a general function that detects objects. Since we are
         calling it on the face cascade, that’s what it detects. The first option is the grayscale image.
@@ -37,7 +39,7 @@ class FaceDetector(Recognizer):
         """
         It takes a frame, converts it to grayscale, detects faces, and then for each face, it predicts
         the label and confidence of the face
-        
+
         :param frame: The frame to recognize faces in
         :param mark_face: If True, the face will be marked with a rectangle and the label of the face,
         defaults to True (optional)
@@ -63,7 +65,7 @@ class FaceDetector(Recognizer):
         """
         It takes a frame and a detection object as input, and draws a rectangle around the face and
         writes the name of the person and the confidence level on the frame
-        
+
         :param frame: The frame to draw the detection on
         :param detection: The detection object returned by the detector
         """
