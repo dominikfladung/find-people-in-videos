@@ -31,13 +31,13 @@
         <h2>API Documentation</h2>
             <ul class="memberlist">
             <li>
-                    <a class="class" href="#VideoFaceDetector">VideoFaceDetector</a>
+                    <a class="class" href="#VideoFaceRecognizer">VideoFaceRecognizer</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="function" href="#VideoFaceDetector.run">run</a>
+                                <a class="function" href="#VideoFaceRecognizer.run">run</a>
                         </li>
                         <li>
-                                <a class="function" href="#VideoFaceDetector.display_frame">display_frame</a>
+                                <a class="function" href="#VideoFaceRecognizer.display_frame">display_frame</a>
                         </li>
                 </ul>
 
@@ -71,10 +71,10 @@
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="kn">import</span> <span class="nn">cv2</span>
 </span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">import</span> <span class="nn">imageio</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">src.FaceDetector</span> <span class="kn">import</span> <span class="n">FaceDetector</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">src.FaceRecognizer</span> <span class="kn">import</span> <span class="n">FaceRecognizer</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="k">class</span> <span class="nc">VideoFaceDetector</span><span class="p">(</span><span class="n">FaceDetector</span><span class="p">):</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="k">class</span> <span class="nc">VideoFaceRecognizer</span><span class="p">(</span><span class="n">FaceRecognizer</span><span class="p">):</span>
 </span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">        It takes a video file, runs the face recognition algorithm on each frame, and outputs a new</span>
@@ -111,136 +111,138 @@
 </span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
 </span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>        <span class="n">video_writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>
-</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>    <span class="k">def</span> <span class="nf">display_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">):</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a><span class="sd">        It displays the frame and sets the window title to the current frame number and the total number</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a><span class="sd">        of frames</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>
-</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a><span class="sd">        :param frame: the frame to display</span>
-</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a><span class="sd">        :param i: the current frame index</span>
-</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a><span class="sd">        :param max_frame_index: The total number of frames in the video</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>
+</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a>    <span class="nd">@staticmethod</span>
+</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">display_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">):</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a><span class="sd">        It displays the frame and sets the window title to the current frame number and the total number</span>
+</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a><span class="sd">        of frames</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>
+</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a><span class="sd">        :param frame: the frame to display</span>
+</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a><span class="sd">        :param i: the current frame index</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a><span class="sd">        :param max_frame_index: The total number of frames in the video</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
 </span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>
-</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>    <span class="n">path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter the path to the video file: &#39;</span><span class="p">)</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>    <span class="n">VideoFaceDetector</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>
+</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>    <span class="n">path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter the path to the video file: &#39;</span><span class="p">)</span>
+</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>    <span class="n">VideoFaceRecognizer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
 </span></pre></div>
 
 
             </section>
-                <section id="VideoFaceDetector">
-                            <input id="VideoFaceDetector-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="VideoFaceRecognizer">
+                            <input id="VideoFaceRecognizer-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
             
     <span class="def">class</span>
-    <span class="name">VideoFaceDetector</span><wbr>(<span class="base"><a href="FaceDetector.html#FaceDetector">src.FaceDetector.FaceDetector</a></span>):
+    <span class="name">VideoFaceRecognizer</span><wbr>(<span class="base"><a href="FaceRecognizer.html#FaceRecognizer">src.FaceRecognizer.FaceRecognizer</a></span>):
 
-                <label class="view-source-button" for="VideoFaceDetector-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="VideoFaceRecognizer-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#VideoFaceDetector"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="VideoFaceDetector-11"><a href="#VideoFaceDetector-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">VideoFaceDetector</span><span class="p">(</span><span class="n">FaceDetector</span><span class="p">):</span>
-</span><span id="VideoFaceDetector-12"><a href="#VideoFaceDetector-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
-</span><span id="VideoFaceDetector-13"><a href="#VideoFaceDetector-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector-14"><a href="#VideoFaceDetector-14"><span class="linenos">14</span></a><span class="sd">        It takes a video file, runs the face recognition algorithm on each frame, and outputs a new</span>
-</span><span id="VideoFaceDetector-15"><a href="#VideoFaceDetector-15"><span class="linenos">15</span></a><span class="sd">        video file with the face recognition results</span>
-</span><span id="VideoFaceDetector-16"><a href="#VideoFaceDetector-16"><span class="linenos">16</span></a>
-</span><span id="VideoFaceDetector-17"><a href="#VideoFaceDetector-17"><span class="linenos">17</span></a><span class="sd">        :param filename: The path to the video file you want to process</span>
-</span><span id="VideoFaceDetector-18"><a href="#VideoFaceDetector-18"><span class="linenos">18</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
-</span><span id="VideoFaceDetector-19"><a href="#VideoFaceDetector-19"><span class="linenos">19</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector-20"><a href="#VideoFaceDetector-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-</span><span id="VideoFaceDetector-21"><a href="#VideoFaceDetector-21"><span class="linenos">21</span></a>
-</span><span id="VideoFaceDetector-22"><a href="#VideoFaceDetector-22"><span class="linenos">22</span></a>        <span class="n">output_filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;detected.mp4&#39;</span>
-</span><span id="VideoFaceDetector-23"><a href="#VideoFaceDetector-23"><span class="linenos">23</span></a>        <span class="n">video</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_reader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>  <span class="s1">&#39;ffmpeg&#39;</span><span class="p">)</span>
-</span><span id="VideoFaceDetector-24"><a href="#VideoFaceDetector-24"><span class="linenos">24</span></a>        <span class="n">meta</span> <span class="o">=</span> <span class="n">video</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">()</span>
-</span><span id="VideoFaceDetector-25"><a href="#VideoFaceDetector-25"><span class="linenos">25</span></a>        <span class="n">video_writer</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_writer</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
-</span><span id="VideoFaceDetector-26"><a href="#VideoFaceDetector-26"><span class="linenos">26</span></a>        <span class="n">max_frame_index</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
-</span><span id="VideoFaceDetector-27"><a href="#VideoFaceDetector-27"><span class="linenos">27</span></a>
-</span><span id="VideoFaceDetector-28"><a href="#VideoFaceDetector-28"><span class="linenos">28</span></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">video</span><span class="p">):</span>
-</span><span id="VideoFaceDetector-29"><a href="#VideoFaceDetector-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-</span><span id="VideoFaceDetector-30"><a href="#VideoFaceDetector-30"><span class="linenos">30</span></a>
-</span><span id="VideoFaceDetector-31"><a href="#VideoFaceDetector-31"><span class="linenos">31</span></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debugging</span><span class="p">:</span>
-</span><span id="VideoFaceDetector-32"><a href="#VideoFaceDetector-32"><span class="linenos">32</span></a>                <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
-</span><span id="VideoFaceDetector-33"><a href="#VideoFaceDetector-33"><span class="linenos">33</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">display_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">)</span>
-</span><span id="VideoFaceDetector-34"><a href="#VideoFaceDetector-34"><span class="linenos">34</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="VideoFaceDetector-35"><a href="#VideoFaceDetector-35"><span class="linenos">35</span></a>                <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
-</span><span id="VideoFaceDetector-36"><a href="#VideoFaceDetector-36"><span class="linenos">36</span></a>
-</span><span id="VideoFaceDetector-37"><a href="#VideoFaceDetector-37"><span class="linenos">37</span></a>            <span class="n">video_writer</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-</span><span id="VideoFaceDetector-38"><a href="#VideoFaceDetector-38"><span class="linenos">38</span></a>
-</span><span id="VideoFaceDetector-39"><a href="#VideoFaceDetector-39"><span class="linenos">39</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
-</span><span id="VideoFaceDetector-40"><a href="#VideoFaceDetector-40"><span class="linenos">40</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
-</span><span id="VideoFaceDetector-41"><a href="#VideoFaceDetector-41"><span class="linenos">41</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
-</span><span id="VideoFaceDetector-42"><a href="#VideoFaceDetector-42"><span class="linenos">42</span></a>                <span class="k">break</span>
-</span><span id="VideoFaceDetector-43"><a href="#VideoFaceDetector-43"><span class="linenos">43</span></a>
-</span><span id="VideoFaceDetector-44"><a href="#VideoFaceDetector-44"><span class="linenos">44</span></a>        <span class="c1"># do a bit of cleanup</span>
-</span><span id="VideoFaceDetector-45"><a href="#VideoFaceDetector-45"><span class="linenos">45</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</span><span id="VideoFaceDetector-46"><a href="#VideoFaceDetector-46"><span class="linenos">46</span></a>        <span class="n">video_writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</span><span id="VideoFaceDetector-47"><a href="#VideoFaceDetector-47"><span class="linenos">47</span></a>
-</span><span id="VideoFaceDetector-48"><a href="#VideoFaceDetector-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">display_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">):</span>
-</span><span id="VideoFaceDetector-49"><a href="#VideoFaceDetector-49"><span class="linenos">49</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector-50"><a href="#VideoFaceDetector-50"><span class="linenos">50</span></a><span class="sd">        It displays the frame and sets the window title to the current frame number and the total number</span>
-</span><span id="VideoFaceDetector-51"><a href="#VideoFaceDetector-51"><span class="linenos">51</span></a><span class="sd">        of frames</span>
-</span><span id="VideoFaceDetector-52"><a href="#VideoFaceDetector-52"><span class="linenos">52</span></a>
-</span><span id="VideoFaceDetector-53"><a href="#VideoFaceDetector-53"><span class="linenos">53</span></a><span class="sd">        :param frame: the frame to display</span>
-</span><span id="VideoFaceDetector-54"><a href="#VideoFaceDetector-54"><span class="linenos">54</span></a><span class="sd">        :param i: the current frame index</span>
-</span><span id="VideoFaceDetector-55"><a href="#VideoFaceDetector-55"><span class="linenos">55</span></a><span class="sd">        :param max_frame_index: The total number of frames in the video</span>
-</span><span id="VideoFaceDetector-56"><a href="#VideoFaceDetector-56"><span class="linenos">56</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector-57"><a href="#VideoFaceDetector-57"><span class="linenos">57</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
-</span><span id="VideoFaceDetector-58"><a href="#VideoFaceDetector-58"><span class="linenos">58</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
+    <a class="headerlink" href="#VideoFaceRecognizer"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="VideoFaceRecognizer-11"><a href="#VideoFaceRecognizer-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">VideoFaceRecognizer</span><span class="p">(</span><span class="n">FaceRecognizer</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer-12"><a href="#VideoFaceRecognizer-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer-13"><a href="#VideoFaceRecognizer-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer-14"><a href="#VideoFaceRecognizer-14"><span class="linenos">14</span></a><span class="sd">        It takes a video file, runs the face recognition algorithm on each frame, and outputs a new</span>
+</span><span id="VideoFaceRecognizer-15"><a href="#VideoFaceRecognizer-15"><span class="linenos">15</span></a><span class="sd">        video file with the face recognition results</span>
+</span><span id="VideoFaceRecognizer-16"><a href="#VideoFaceRecognizer-16"><span class="linenos">16</span></a>
+</span><span id="VideoFaceRecognizer-17"><a href="#VideoFaceRecognizer-17"><span class="linenos">17</span></a><span class="sd">        :param filename: The path to the video file you want to process</span>
+</span><span id="VideoFaceRecognizer-18"><a href="#VideoFaceRecognizer-18"><span class="linenos">18</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
+</span><span id="VideoFaceRecognizer-19"><a href="#VideoFaceRecognizer-19"><span class="linenos">19</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer-20"><a href="#VideoFaceRecognizer-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer-21"><a href="#VideoFaceRecognizer-21"><span class="linenos">21</span></a>
+</span><span id="VideoFaceRecognizer-22"><a href="#VideoFaceRecognizer-22"><span class="linenos">22</span></a>        <span class="n">output_filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;detected.mp4&#39;</span>
+</span><span id="VideoFaceRecognizer-23"><a href="#VideoFaceRecognizer-23"><span class="linenos">23</span></a>        <span class="n">video</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_reader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>  <span class="s1">&#39;ffmpeg&#39;</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer-24"><a href="#VideoFaceRecognizer-24"><span class="linenos">24</span></a>        <span class="n">meta</span> <span class="o">=</span> <span class="n">video</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">()</span>
+</span><span id="VideoFaceRecognizer-25"><a href="#VideoFaceRecognizer-25"><span class="linenos">25</span></a>        <span class="n">video_writer</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_writer</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
+</span><span id="VideoFaceRecognizer-26"><a href="#VideoFaceRecognizer-26"><span class="linenos">26</span></a>        <span class="n">max_frame_index</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
+</span><span id="VideoFaceRecognizer-27"><a href="#VideoFaceRecognizer-27"><span class="linenos">27</span></a>
+</span><span id="VideoFaceRecognizer-28"><a href="#VideoFaceRecognizer-28"><span class="linenos">28</span></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">video</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer-29"><a href="#VideoFaceRecognizer-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer-30"><a href="#VideoFaceRecognizer-30"><span class="linenos">30</span></a>
+</span><span id="VideoFaceRecognizer-31"><a href="#VideoFaceRecognizer-31"><span class="linenos">31</span></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debugging</span><span class="p">:</span>
+</span><span id="VideoFaceRecognizer-32"><a href="#VideoFaceRecognizer-32"><span class="linenos">32</span></a>                <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer-33"><a href="#VideoFaceRecognizer-33"><span class="linenos">33</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">display_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer-34"><a href="#VideoFaceRecognizer-34"><span class="linenos">34</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="VideoFaceRecognizer-35"><a href="#VideoFaceRecognizer-35"><span class="linenos">35</span></a>                <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
+</span><span id="VideoFaceRecognizer-36"><a href="#VideoFaceRecognizer-36"><span class="linenos">36</span></a>
+</span><span id="VideoFaceRecognizer-37"><a href="#VideoFaceRecognizer-37"><span class="linenos">37</span></a>            <span class="n">video_writer</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer-38"><a href="#VideoFaceRecognizer-38"><span class="linenos">38</span></a>
+</span><span id="VideoFaceRecognizer-39"><a href="#VideoFaceRecognizer-39"><span class="linenos">39</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+</span><span id="VideoFaceRecognizer-40"><a href="#VideoFaceRecognizer-40"><span class="linenos">40</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
+</span><span id="VideoFaceRecognizer-41"><a href="#VideoFaceRecognizer-41"><span class="linenos">41</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer-42"><a href="#VideoFaceRecognizer-42"><span class="linenos">42</span></a>                <span class="k">break</span>
+</span><span id="VideoFaceRecognizer-43"><a href="#VideoFaceRecognizer-43"><span class="linenos">43</span></a>
+</span><span id="VideoFaceRecognizer-44"><a href="#VideoFaceRecognizer-44"><span class="linenos">44</span></a>        <span class="c1"># do a bit of cleanup</span>
+</span><span id="VideoFaceRecognizer-45"><a href="#VideoFaceRecognizer-45"><span class="linenos">45</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span><span id="VideoFaceRecognizer-46"><a href="#VideoFaceRecognizer-46"><span class="linenos">46</span></a>        <span class="n">video_writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="VideoFaceRecognizer-47"><a href="#VideoFaceRecognizer-47"><span class="linenos">47</span></a>
+</span><span id="VideoFaceRecognizer-48"><a href="#VideoFaceRecognizer-48"><span class="linenos">48</span></a>    <span class="nd">@staticmethod</span>
+</span><span id="VideoFaceRecognizer-49"><a href="#VideoFaceRecognizer-49"><span class="linenos">49</span></a>    <span class="k">def</span> <span class="nf">display_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer-50"><a href="#VideoFaceRecognizer-50"><span class="linenos">50</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer-51"><a href="#VideoFaceRecognizer-51"><span class="linenos">51</span></a><span class="sd">        It displays the frame and sets the window title to the current frame number and the total number</span>
+</span><span id="VideoFaceRecognizer-52"><a href="#VideoFaceRecognizer-52"><span class="linenos">52</span></a><span class="sd">        of frames</span>
+</span><span id="VideoFaceRecognizer-53"><a href="#VideoFaceRecognizer-53"><span class="linenos">53</span></a>
+</span><span id="VideoFaceRecognizer-54"><a href="#VideoFaceRecognizer-54"><span class="linenos">54</span></a><span class="sd">        :param frame: the frame to display</span>
+</span><span id="VideoFaceRecognizer-55"><a href="#VideoFaceRecognizer-55"><span class="linenos">55</span></a><span class="sd">        :param i: the current frame index</span>
+</span><span id="VideoFaceRecognizer-56"><a href="#VideoFaceRecognizer-56"><span class="linenos">56</span></a><span class="sd">        :param max_frame_index: The total number of frames in the video</span>
+</span><span id="VideoFaceRecognizer-57"><a href="#VideoFaceRecognizer-57"><span class="linenos">57</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer-58"><a href="#VideoFaceRecognizer-58"><span class="linenos">58</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer-59"><a href="#VideoFaceRecognizer-59"><span class="linenos">59</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
 </span></pre></div>
 
 
     
 
-                            <div id="VideoFaceDetector.run" class="classattr">
-                                        <input id="VideoFaceDetector.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="VideoFaceRecognizer.run" class="classattr">
+                                        <input id="VideoFaceRecognizer.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
         <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">filename</span>, </span><span class="param"><span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="VideoFaceDetector.run-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="VideoFaceRecognizer.run-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#VideoFaceDetector.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="VideoFaceDetector.run-12"><a href="#VideoFaceDetector.run-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
-</span><span id="VideoFaceDetector.run-13"><a href="#VideoFaceDetector.run-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector.run-14"><a href="#VideoFaceDetector.run-14"><span class="linenos">14</span></a><span class="sd">        It takes a video file, runs the face recognition algorithm on each frame, and outputs a new</span>
-</span><span id="VideoFaceDetector.run-15"><a href="#VideoFaceDetector.run-15"><span class="linenos">15</span></a><span class="sd">        video file with the face recognition results</span>
-</span><span id="VideoFaceDetector.run-16"><a href="#VideoFaceDetector.run-16"><span class="linenos">16</span></a>
-</span><span id="VideoFaceDetector.run-17"><a href="#VideoFaceDetector.run-17"><span class="linenos">17</span></a><span class="sd">        :param filename: The path to the video file you want to process</span>
-</span><span id="VideoFaceDetector.run-18"><a href="#VideoFaceDetector.run-18"><span class="linenos">18</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
-</span><span id="VideoFaceDetector.run-19"><a href="#VideoFaceDetector.run-19"><span class="linenos">19</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector.run-20"><a href="#VideoFaceDetector.run-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-</span><span id="VideoFaceDetector.run-21"><a href="#VideoFaceDetector.run-21"><span class="linenos">21</span></a>
-</span><span id="VideoFaceDetector.run-22"><a href="#VideoFaceDetector.run-22"><span class="linenos">22</span></a>        <span class="n">output_filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;detected.mp4&#39;</span>
-</span><span id="VideoFaceDetector.run-23"><a href="#VideoFaceDetector.run-23"><span class="linenos">23</span></a>        <span class="n">video</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_reader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>  <span class="s1">&#39;ffmpeg&#39;</span><span class="p">)</span>
-</span><span id="VideoFaceDetector.run-24"><a href="#VideoFaceDetector.run-24"><span class="linenos">24</span></a>        <span class="n">meta</span> <span class="o">=</span> <span class="n">video</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">()</span>
-</span><span id="VideoFaceDetector.run-25"><a href="#VideoFaceDetector.run-25"><span class="linenos">25</span></a>        <span class="n">video_writer</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_writer</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
-</span><span id="VideoFaceDetector.run-26"><a href="#VideoFaceDetector.run-26"><span class="linenos">26</span></a>        <span class="n">max_frame_index</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
-</span><span id="VideoFaceDetector.run-27"><a href="#VideoFaceDetector.run-27"><span class="linenos">27</span></a>
-</span><span id="VideoFaceDetector.run-28"><a href="#VideoFaceDetector.run-28"><span class="linenos">28</span></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">video</span><span class="p">):</span>
-</span><span id="VideoFaceDetector.run-29"><a href="#VideoFaceDetector.run-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-</span><span id="VideoFaceDetector.run-30"><a href="#VideoFaceDetector.run-30"><span class="linenos">30</span></a>
-</span><span id="VideoFaceDetector.run-31"><a href="#VideoFaceDetector.run-31"><span class="linenos">31</span></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debugging</span><span class="p">:</span>
-</span><span id="VideoFaceDetector.run-32"><a href="#VideoFaceDetector.run-32"><span class="linenos">32</span></a>                <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
-</span><span id="VideoFaceDetector.run-33"><a href="#VideoFaceDetector.run-33"><span class="linenos">33</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">display_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">)</span>
-</span><span id="VideoFaceDetector.run-34"><a href="#VideoFaceDetector.run-34"><span class="linenos">34</span></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="VideoFaceDetector.run-35"><a href="#VideoFaceDetector.run-35"><span class="linenos">35</span></a>                <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
-</span><span id="VideoFaceDetector.run-36"><a href="#VideoFaceDetector.run-36"><span class="linenos">36</span></a>
-</span><span id="VideoFaceDetector.run-37"><a href="#VideoFaceDetector.run-37"><span class="linenos">37</span></a>            <span class="n">video_writer</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-</span><span id="VideoFaceDetector.run-38"><a href="#VideoFaceDetector.run-38"><span class="linenos">38</span></a>
-</span><span id="VideoFaceDetector.run-39"><a href="#VideoFaceDetector.run-39"><span class="linenos">39</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
-</span><span id="VideoFaceDetector.run-40"><a href="#VideoFaceDetector.run-40"><span class="linenos">40</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
-</span><span id="VideoFaceDetector.run-41"><a href="#VideoFaceDetector.run-41"><span class="linenos">41</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
-</span><span id="VideoFaceDetector.run-42"><a href="#VideoFaceDetector.run-42"><span class="linenos">42</span></a>                <span class="k">break</span>
-</span><span id="VideoFaceDetector.run-43"><a href="#VideoFaceDetector.run-43"><span class="linenos">43</span></a>
-</span><span id="VideoFaceDetector.run-44"><a href="#VideoFaceDetector.run-44"><span class="linenos">44</span></a>        <span class="c1"># do a bit of cleanup</span>
-</span><span id="VideoFaceDetector.run-45"><a href="#VideoFaceDetector.run-45"><span class="linenos">45</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</span><span id="VideoFaceDetector.run-46"><a href="#VideoFaceDetector.run-46"><span class="linenos">46</span></a>        <span class="n">video_writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <a class="headerlink" href="#VideoFaceRecognizer.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="VideoFaceRecognizer.run-12"><a href="#VideoFaceRecognizer.run-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer.run-13"><a href="#VideoFaceRecognizer.run-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer.run-14"><a href="#VideoFaceRecognizer.run-14"><span class="linenos">14</span></a><span class="sd">        It takes a video file, runs the face recognition algorithm on each frame, and outputs a new</span>
+</span><span id="VideoFaceRecognizer.run-15"><a href="#VideoFaceRecognizer.run-15"><span class="linenos">15</span></a><span class="sd">        video file with the face recognition results</span>
+</span><span id="VideoFaceRecognizer.run-16"><a href="#VideoFaceRecognizer.run-16"><span class="linenos">16</span></a>
+</span><span id="VideoFaceRecognizer.run-17"><a href="#VideoFaceRecognizer.run-17"><span class="linenos">17</span></a><span class="sd">        :param filename: The path to the video file you want to process</span>
+</span><span id="VideoFaceRecognizer.run-18"><a href="#VideoFaceRecognizer.run-18"><span class="linenos">18</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
+</span><span id="VideoFaceRecognizer.run-19"><a href="#VideoFaceRecognizer.run-19"><span class="linenos">19</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer.run-20"><a href="#VideoFaceRecognizer.run-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer.run-21"><a href="#VideoFaceRecognizer.run-21"><span class="linenos">21</span></a>
+</span><span id="VideoFaceRecognizer.run-22"><a href="#VideoFaceRecognizer.run-22"><span class="linenos">22</span></a>        <span class="n">output_filename</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;detected.mp4&#39;</span>
+</span><span id="VideoFaceRecognizer.run-23"><a href="#VideoFaceRecognizer.run-23"><span class="linenos">23</span></a>        <span class="n">video</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_reader</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span>  <span class="s1">&#39;ffmpeg&#39;</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer.run-24"><a href="#VideoFaceRecognizer.run-24"><span class="linenos">24</span></a>        <span class="n">meta</span> <span class="o">=</span> <span class="n">video</span><span class="o">.</span><span class="n">get_meta_data</span><span class="p">()</span>
+</span><span id="VideoFaceRecognizer.run-25"><a href="#VideoFaceRecognizer.run-25"><span class="linenos">25</span></a>        <span class="n">video_writer</span> <span class="o">=</span> <span class="n">imageio</span><span class="o">.</span><span class="n">get_writer</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
+</span><span id="VideoFaceRecognizer.run-26"><a href="#VideoFaceRecognizer.run-26"><span class="linenos">26</span></a>        <span class="n">max_frame_index</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;duration&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;fps&#39;</span><span class="p">])</span>
+</span><span id="VideoFaceRecognizer.run-27"><a href="#VideoFaceRecognizer.run-27"><span class="linenos">27</span></a>
+</span><span id="VideoFaceRecognizer.run-28"><a href="#VideoFaceRecognizer.run-28"><span class="linenos">28</span></a>        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">video</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer.run-29"><a href="#VideoFaceRecognizer.run-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer.run-30"><a href="#VideoFaceRecognizer.run-30"><span class="linenos">30</span></a>
+</span><span id="VideoFaceRecognizer.run-31"><a href="#VideoFaceRecognizer.run-31"><span class="linenos">31</span></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">debugging</span><span class="p">:</span>
+</span><span id="VideoFaceRecognizer.run-32"><a href="#VideoFaceRecognizer.run-32"><span class="linenos">32</span></a>                <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer.run-33"><a href="#VideoFaceRecognizer.run-33"><span class="linenos">33</span></a>                <span class="bp">self</span><span class="o">.</span><span class="n">display_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer.run-34"><a href="#VideoFaceRecognizer.run-34"><span class="linenos">34</span></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="VideoFaceRecognizer.run-35"><a href="#VideoFaceRecognizer.run-35"><span class="linenos">35</span></a>                <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
+</span><span id="VideoFaceRecognizer.run-36"><a href="#VideoFaceRecognizer.run-36"><span class="linenos">36</span></a>
+</span><span id="VideoFaceRecognizer.run-37"><a href="#VideoFaceRecognizer.run-37"><span class="linenos">37</span></a>            <span class="n">video_writer</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer.run-38"><a href="#VideoFaceRecognizer.run-38"><span class="linenos">38</span></a>
+</span><span id="VideoFaceRecognizer.run-39"><a href="#VideoFaceRecognizer.run-39"><span class="linenos">39</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+</span><span id="VideoFaceRecognizer.run-40"><a href="#VideoFaceRecognizer.run-40"><span class="linenos">40</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
+</span><span id="VideoFaceRecognizer.run-41"><a href="#VideoFaceRecognizer.run-41"><span class="linenos">41</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer.run-42"><a href="#VideoFaceRecognizer.run-42"><span class="linenos">42</span></a>                <span class="k">break</span>
+</span><span id="VideoFaceRecognizer.run-43"><a href="#VideoFaceRecognizer.run-43"><span class="linenos">43</span></a>
+</span><span id="VideoFaceRecognizer.run-44"><a href="#VideoFaceRecognizer.run-44"><span class="linenos">44</span></a>        <span class="c1"># do a bit of cleanup</span>
+</span><span id="VideoFaceRecognizer.run-45"><a href="#VideoFaceRecognizer.run-45"><span class="linenos">45</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span><span id="VideoFaceRecognizer.run-46"><a href="#VideoFaceRecognizer.run-46"><span class="linenos">46</span></a>        <span class="n">video_writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -257,28 +259,30 @@ video file with the face recognition results</p>
 
 
                             </div>
-                            <div id="VideoFaceDetector.display_frame" class="classattr">
-                                        <input id="VideoFaceDetector.display_frame-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="VideoFaceRecognizer.display_frame" class="classattr">
+                                        <input id="VideoFaceRecognizer.display_frame-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">display_frame</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">frame</span>, </span><span class="param"><span class="n">i</span>, </span><span class="param"><span class="n">max_frame_index</span></span><span class="return-annotation">):</span></span>
+                    <div class="decorator">@staticmethod</div>
 
-                <label class="view-source-button" for="VideoFaceDetector.display_frame-view-source"><span>View Source</span></label>
+        <span class="def">def</span>
+        <span class="name">display_frame</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">frame</span>, </span><span class="param"><span class="n">i</span>, </span><span class="param"><span class="n">max_frame_index</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="VideoFaceRecognizer.display_frame-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#VideoFaceDetector.display_frame"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="VideoFaceDetector.display_frame-48"><a href="#VideoFaceDetector.display_frame-48"><span class="linenos">48</span></a>    <span class="k">def</span> <span class="nf">display_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">):</span>
-</span><span id="VideoFaceDetector.display_frame-49"><a href="#VideoFaceDetector.display_frame-49"><span class="linenos">49</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector.display_frame-50"><a href="#VideoFaceDetector.display_frame-50"><span class="linenos">50</span></a><span class="sd">        It displays the frame and sets the window title to the current frame number and the total number</span>
-</span><span id="VideoFaceDetector.display_frame-51"><a href="#VideoFaceDetector.display_frame-51"><span class="linenos">51</span></a><span class="sd">        of frames</span>
-</span><span id="VideoFaceDetector.display_frame-52"><a href="#VideoFaceDetector.display_frame-52"><span class="linenos">52</span></a>
-</span><span id="VideoFaceDetector.display_frame-53"><a href="#VideoFaceDetector.display_frame-53"><span class="linenos">53</span></a><span class="sd">        :param frame: the frame to display</span>
-</span><span id="VideoFaceDetector.display_frame-54"><a href="#VideoFaceDetector.display_frame-54"><span class="linenos">54</span></a><span class="sd">        :param i: the current frame index</span>
-</span><span id="VideoFaceDetector.display_frame-55"><a href="#VideoFaceDetector.display_frame-55"><span class="linenos">55</span></a><span class="sd">        :param max_frame_index: The total number of frames in the video</span>
-</span><span id="VideoFaceDetector.display_frame-56"><a href="#VideoFaceDetector.display_frame-56"><span class="linenos">56</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="VideoFaceDetector.display_frame-57"><a href="#VideoFaceDetector.display_frame-57"><span class="linenos">57</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
-</span><span id="VideoFaceDetector.display_frame-58"><a href="#VideoFaceDetector.display_frame-58"><span class="linenos">58</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
+    <a class="headerlink" href="#VideoFaceRecognizer.display_frame"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="VideoFaceRecognizer.display_frame-48"><a href="#VideoFaceRecognizer.display_frame-48"><span class="linenos">48</span></a>    <span class="nd">@staticmethod</span>
+</span><span id="VideoFaceRecognizer.display_frame-49"><a href="#VideoFaceRecognizer.display_frame-49"><span class="linenos">49</span></a>    <span class="k">def</span> <span class="nf">display_frame</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">max_frame_index</span><span class="p">):</span>
+</span><span id="VideoFaceRecognizer.display_frame-50"><a href="#VideoFaceRecognizer.display_frame-50"><span class="linenos">50</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer.display_frame-51"><a href="#VideoFaceRecognizer.display_frame-51"><span class="linenos">51</span></a><span class="sd">        It displays the frame and sets the window title to the current frame number and the total number</span>
+</span><span id="VideoFaceRecognizer.display_frame-52"><a href="#VideoFaceRecognizer.display_frame-52"><span class="linenos">52</span></a><span class="sd">        of frames</span>
+</span><span id="VideoFaceRecognizer.display_frame-53"><a href="#VideoFaceRecognizer.display_frame-53"><span class="linenos">53</span></a>
+</span><span id="VideoFaceRecognizer.display_frame-54"><a href="#VideoFaceRecognizer.display_frame-54"><span class="linenos">54</span></a><span class="sd">        :param frame: the frame to display</span>
+</span><span id="VideoFaceRecognizer.display_frame-55"><a href="#VideoFaceRecognizer.display_frame-55"><span class="linenos">55</span></a><span class="sd">        :param i: the current frame index</span>
+</span><span id="VideoFaceRecognizer.display_frame-56"><a href="#VideoFaceRecognizer.display_frame-56"><span class="linenos">56</span></a><span class="sd">        :param max_frame_index: The total number of frames in the video</span>
+</span><span id="VideoFaceRecognizer.display_frame-57"><a href="#VideoFaceRecognizer.display_frame-57"><span class="linenos">57</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="VideoFaceRecognizer.display_frame-58"><a href="#VideoFaceRecognizer.display_frame-58"><span class="linenos">58</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</span><span id="VideoFaceRecognizer.display_frame-59"><a href="#VideoFaceRecognizer.display_frame-59"><span class="linenos">59</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s1">&#39;Frame&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; / &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">max_frame_index</span><span class="p">))</span>
 </span></pre></div>
 
 
@@ -299,19 +303,12 @@ of frames</p>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
-                                    <div><dt><a href="FaceDetector.html#FaceDetector">src.FaceDetector.FaceDetector</a></dt>
-                                <dd id="VideoFaceDetector.__init__" class="function"><a href="FaceDetector.html#FaceDetector.__init__">FaceDetector</a></dd>
-                <dd id="VideoFaceDetector.load_model" class="function"><a href="FaceDetector.html#FaceDetector.load_model">load_model</a></dd>
-                <dd id="VideoFaceDetector.detect_faces" class="function"><a href="FaceDetector.html#FaceDetector.detect_faces">detect_faces</a></dd>
-                <dd id="VideoFaceDetector.recognize" class="function"><a href="FaceDetector.html#FaceDetector.recognize">recognize</a></dd>
-                <dd id="VideoFaceDetector.mark_face" class="function"><a href="FaceDetector.html#FaceDetector.mark_face">mark_face</a></dd>
-
-            </div>
-            <div><dt><a href="Recognizer.html#Recognizer">src.Recognizer.Recognizer</a></dt>
-                                <dd id="VideoFaceDetector.get_people_register" class="function"><a href="Recognizer.html#Recognizer.get_people_register">get_people_register</a></dd>
-                <dd id="VideoFaceDetector.set_people_register" class="function"><a href="Recognizer.html#Recognizer.set_people_register">set_people_register</a></dd>
-                <dd id="VideoFaceDetector.get_person_index" class="function"><a href="Recognizer.html#Recognizer.get_person_index">get_person_index</a></dd>
-                <dd id="VideoFaceDetector.get_person_name" class="function"><a href="Recognizer.html#Recognizer.get_person_name">get_person_name</a></dd>
+                                    <div><dt><a href="FaceRecognizer.html#FaceRecognizer">src.FaceRecognizer.FaceRecognizer</a></dt>
+                                <dd id="VideoFaceRecognizer.__init__" class="function"><a href="FaceRecognizer.html#FaceRecognizer.__init__">FaceRecognizer</a></dd>
+                <dd id="VideoFaceRecognizer.load_model" class="function"><a href="FaceRecognizer.html#FaceRecognizer.load_model">load_model</a></dd>
+                <dd id="VideoFaceRecognizer.recognize" class="function"><a href="FaceRecognizer.html#FaceRecognizer.recognize">recognize</a></dd>
+                <dd id="VideoFaceRecognizer.detect_faces" class="function"><a href="FaceRecognizer.html#FaceRecognizer.detect_faces">detect_faces</a></dd>
+                <dd id="VideoFaceRecognizer.mark_face" class="function"><a href="FaceRecognizer.html#FaceRecognizer.mark_face">mark_face</a></dd>
 
             </div>
                                 </dl>

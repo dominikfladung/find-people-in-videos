@@ -31,10 +31,10 @@
         <h2>API Documentation</h2>
             <ul class="memberlist">
             <li>
-                    <a class="class" href="#CameraFaceDetector">CameraFaceDetector</a>
+                    <a class="class" href="#CameraFaceRecognizer">CameraFaceRecognizer</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="function" href="#CameraFaceDetector.run">run</a>
+                                <a class="function" href="#CameraFaceRecognizer.run">run</a>
                         </li>
                 </ul>
 
@@ -68,10 +68,10 @@
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a>
 </span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">import</span> <span class="nn">cv2</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">src.FaceDetector</span> <span class="kn">import</span> <span class="n">FaceDetector</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">src.FaceRecognizer</span> <span class="kn">import</span> <span class="n">FaceRecognizer</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="k">class</span> <span class="nc">CameraFaceDetector</span><span class="p">(</span><span class="n">FaceDetector</span><span class="p">):</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="k">class</span> <span class="nc">CameraFaceRecognizer</span><span class="p">(</span><span class="n">FaceRecognizer</span><span class="p">):</span>
 </span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>        <span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="sd">        It loads the model, captures the video from the webcam, and then runs the model on the video</span>
@@ -106,101 +106,101 @@
 </span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>
 </span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>
 </span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>    <span class="n">CameraFaceDetector</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>    <span class="n">CameraFaceRecognizer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </span></pre></div>
 
 
             </section>
-                <section id="CameraFaceDetector">
-                            <input id="CameraFaceDetector-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="CameraFaceRecognizer">
+                            <input id="CameraFaceRecognizer-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
             
     <span class="def">class</span>
-    <span class="name">CameraFaceDetector</span><wbr>(<span class="base"><a href="FaceDetector.html#FaceDetector">src.FaceDetector.FaceDetector</a></span>):
+    <span class="name">CameraFaceRecognizer</span><wbr>(<span class="base"><a href="FaceRecognizer.html#FaceRecognizer">src.FaceRecognizer.FaceRecognizer</a></span>):
 
-                <label class="view-source-button" for="CameraFaceDetector-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="CameraFaceRecognizer-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#CameraFaceDetector"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CameraFaceDetector-11"><a href="#CameraFaceDetector-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">CameraFaceDetector</span><span class="p">(</span><span class="n">FaceDetector</span><span class="p">):</span>
-</span><span id="CameraFaceDetector-12"><a href="#CameraFaceDetector-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
-</span><span id="CameraFaceDetector-13"><a href="#CameraFaceDetector-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CameraFaceDetector-14"><a href="#CameraFaceDetector-14"><span class="linenos">14</span></a><span class="sd">        It loads the model, captures the video from the webcam, and then runs the model on the video</span>
-</span><span id="CameraFaceDetector-15"><a href="#CameraFaceDetector-15"><span class="linenos">15</span></a><span class="sd">        frames</span>
-</span><span id="CameraFaceDetector-16"><a href="#CameraFaceDetector-16"><span class="linenos">16</span></a><span class="sd">        </span>
-</span><span id="CameraFaceDetector-17"><a href="#CameraFaceDetector-17"><span class="linenos">17</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
-</span><span id="CameraFaceDetector-18"><a href="#CameraFaceDetector-18"><span class="linenos">18</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CameraFaceDetector-19"><a href="#CameraFaceDetector-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-</span><span id="CameraFaceDetector-20"><a href="#CameraFaceDetector-20"><span class="linenos">20</span></a>
-</span><span id="CameraFaceDetector-21"><a href="#CameraFaceDetector-21"><span class="linenos">21</span></a>        <span class="c1"># initialize the video capture</span>
-</span><span id="CameraFaceDetector-22"><a href="#CameraFaceDetector-22"><span class="linenos">22</span></a>        <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span><span id="CameraFaceDetector-23"><a href="#CameraFaceDetector-23"><span class="linenos">23</span></a>
-</span><span id="CameraFaceDetector-24"><a href="#CameraFaceDetector-24"><span class="linenos">24</span></a>        <span class="c1"># loop over the frames from the video stream</span>
-</span><span id="CameraFaceDetector-25"><a href="#CameraFaceDetector-25"><span class="linenos">25</span></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-</span><span id="CameraFaceDetector-26"><a href="#CameraFaceDetector-26"><span class="linenos">26</span></a>            <span class="c1"># grab the current frame</span>
-</span><span id="CameraFaceDetector-27"><a href="#CameraFaceDetector-27"><span class="linenos">27</span></a>            <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span id="CameraFaceDetector-28"><a href="#CameraFaceDetector-28"><span class="linenos">28</span></a>
-</span><span id="CameraFaceDetector-29"><a href="#CameraFaceDetector-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-</span><span id="CameraFaceDetector-30"><a href="#CameraFaceDetector-30"><span class="linenos">30</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
-</span><span id="CameraFaceDetector-31"><a href="#CameraFaceDetector-31"><span class="linenos">31</span></a>
-</span><span id="CameraFaceDetector-32"><a href="#CameraFaceDetector-32"><span class="linenos">32</span></a>            <span class="c1"># show the frame</span>
-</span><span id="CameraFaceDetector-33"><a href="#CameraFaceDetector-33"><span class="linenos">33</span></a>            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
-</span><span id="CameraFaceDetector-34"><a href="#CameraFaceDetector-34"><span class="linenos">34</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
-</span><span id="CameraFaceDetector-35"><a href="#CameraFaceDetector-35"><span class="linenos">35</span></a>
-</span><span id="CameraFaceDetector-36"><a href="#CameraFaceDetector-36"><span class="linenos">36</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
-</span><span id="CameraFaceDetector-37"><a href="#CameraFaceDetector-37"><span class="linenos">37</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
-</span><span id="CameraFaceDetector-38"><a href="#CameraFaceDetector-38"><span class="linenos">38</span></a>                <span class="k">break</span>
-</span><span id="CameraFaceDetector-39"><a href="#CameraFaceDetector-39"><span class="linenos">39</span></a>
-</span><span id="CameraFaceDetector-40"><a href="#CameraFaceDetector-40"><span class="linenos">40</span></a>        <span class="c1"># do a bit of cleanup</span>
-</span><span id="CameraFaceDetector-41"><a href="#CameraFaceDetector-41"><span class="linenos">41</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</span><span id="CameraFaceDetector-42"><a href="#CameraFaceDetector-42"><span class="linenos">42</span></a>        <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+    <a class="headerlink" href="#CameraFaceRecognizer"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CameraFaceRecognizer-11"><a href="#CameraFaceRecognizer-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">CameraFaceRecognizer</span><span class="p">(</span><span class="n">FaceRecognizer</span><span class="p">):</span>
+</span><span id="CameraFaceRecognizer-12"><a href="#CameraFaceRecognizer-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
+</span><span id="CameraFaceRecognizer-13"><a href="#CameraFaceRecognizer-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CameraFaceRecognizer-14"><a href="#CameraFaceRecognizer-14"><span class="linenos">14</span></a><span class="sd">        It loads the model, captures the video from the webcam, and then runs the model on the video</span>
+</span><span id="CameraFaceRecognizer-15"><a href="#CameraFaceRecognizer-15"><span class="linenos">15</span></a><span class="sd">        frames</span>
+</span><span id="CameraFaceRecognizer-16"><a href="#CameraFaceRecognizer-16"><span class="linenos">16</span></a><span class="sd">        </span>
+</span><span id="CameraFaceRecognizer-17"><a href="#CameraFaceRecognizer-17"><span class="linenos">17</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
+</span><span id="CameraFaceRecognizer-18"><a href="#CameraFaceRecognizer-18"><span class="linenos">18</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CameraFaceRecognizer-19"><a href="#CameraFaceRecognizer-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer-20"><a href="#CameraFaceRecognizer-20"><span class="linenos">20</span></a>
+</span><span id="CameraFaceRecognizer-21"><a href="#CameraFaceRecognizer-21"><span class="linenos">21</span></a>        <span class="c1"># initialize the video capture</span>
+</span><span id="CameraFaceRecognizer-22"><a href="#CameraFaceRecognizer-22"><span class="linenos">22</span></a>        <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer-23"><a href="#CameraFaceRecognizer-23"><span class="linenos">23</span></a>
+</span><span id="CameraFaceRecognizer-24"><a href="#CameraFaceRecognizer-24"><span class="linenos">24</span></a>        <span class="c1"># loop over the frames from the video stream</span>
+</span><span id="CameraFaceRecognizer-25"><a href="#CameraFaceRecognizer-25"><span class="linenos">25</span></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="CameraFaceRecognizer-26"><a href="#CameraFaceRecognizer-26"><span class="linenos">26</span></a>            <span class="c1"># grab the current frame</span>
+</span><span id="CameraFaceRecognizer-27"><a href="#CameraFaceRecognizer-27"><span class="linenos">27</span></a>            <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span id="CameraFaceRecognizer-28"><a href="#CameraFaceRecognizer-28"><span class="linenos">28</span></a>
+</span><span id="CameraFaceRecognizer-29"><a href="#CameraFaceRecognizer-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer-30"><a href="#CameraFaceRecognizer-30"><span class="linenos">30</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer-31"><a href="#CameraFaceRecognizer-31"><span class="linenos">31</span></a>
+</span><span id="CameraFaceRecognizer-32"><a href="#CameraFaceRecognizer-32"><span class="linenos">32</span></a>            <span class="c1"># show the frame</span>
+</span><span id="CameraFaceRecognizer-33"><a href="#CameraFaceRecognizer-33"><span class="linenos">33</span></a>            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer-34"><a href="#CameraFaceRecognizer-34"><span class="linenos">34</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+</span><span id="CameraFaceRecognizer-35"><a href="#CameraFaceRecognizer-35"><span class="linenos">35</span></a>
+</span><span id="CameraFaceRecognizer-36"><a href="#CameraFaceRecognizer-36"><span class="linenos">36</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
+</span><span id="CameraFaceRecognizer-37"><a href="#CameraFaceRecognizer-37"><span class="linenos">37</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
+</span><span id="CameraFaceRecognizer-38"><a href="#CameraFaceRecognizer-38"><span class="linenos">38</span></a>                <span class="k">break</span>
+</span><span id="CameraFaceRecognizer-39"><a href="#CameraFaceRecognizer-39"><span class="linenos">39</span></a>
+</span><span id="CameraFaceRecognizer-40"><a href="#CameraFaceRecognizer-40"><span class="linenos">40</span></a>        <span class="c1"># do a bit of cleanup</span>
+</span><span id="CameraFaceRecognizer-41"><a href="#CameraFaceRecognizer-41"><span class="linenos">41</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span><span id="CameraFaceRecognizer-42"><a href="#CameraFaceRecognizer-42"><span class="linenos">42</span></a>        <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 </span></pre></div>
 
 
     
 
-                            <div id="CameraFaceDetector.run" class="classattr">
-                                        <input id="CameraFaceDetector.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="CameraFaceRecognizer.run" class="classattr">
+                                        <input id="CameraFaceRecognizer.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
         <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="CameraFaceDetector.run-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="CameraFaceRecognizer.run-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#CameraFaceDetector.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CameraFaceDetector.run-12"><a href="#CameraFaceDetector.run-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
-</span><span id="CameraFaceDetector.run-13"><a href="#CameraFaceDetector.run-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CameraFaceDetector.run-14"><a href="#CameraFaceDetector.run-14"><span class="linenos">14</span></a><span class="sd">        It loads the model, captures the video from the webcam, and then runs the model on the video</span>
-</span><span id="CameraFaceDetector.run-15"><a href="#CameraFaceDetector.run-15"><span class="linenos">15</span></a><span class="sd">        frames</span>
-</span><span id="CameraFaceDetector.run-16"><a href="#CameraFaceDetector.run-16"><span class="linenos">16</span></a><span class="sd">        </span>
-</span><span id="CameraFaceDetector.run-17"><a href="#CameraFaceDetector.run-17"><span class="linenos">17</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
-</span><span id="CameraFaceDetector.run-18"><a href="#CameraFaceDetector.run-18"><span class="linenos">18</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CameraFaceDetector.run-19"><a href="#CameraFaceDetector.run-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-</span><span id="CameraFaceDetector.run-20"><a href="#CameraFaceDetector.run-20"><span class="linenos">20</span></a>
-</span><span id="CameraFaceDetector.run-21"><a href="#CameraFaceDetector.run-21"><span class="linenos">21</span></a>        <span class="c1"># initialize the video capture</span>
-</span><span id="CameraFaceDetector.run-22"><a href="#CameraFaceDetector.run-22"><span class="linenos">22</span></a>        <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-</span><span id="CameraFaceDetector.run-23"><a href="#CameraFaceDetector.run-23"><span class="linenos">23</span></a>
-</span><span id="CameraFaceDetector.run-24"><a href="#CameraFaceDetector.run-24"><span class="linenos">24</span></a>        <span class="c1"># loop over the frames from the video stream</span>
-</span><span id="CameraFaceDetector.run-25"><a href="#CameraFaceDetector.run-25"><span class="linenos">25</span></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-</span><span id="CameraFaceDetector.run-26"><a href="#CameraFaceDetector.run-26"><span class="linenos">26</span></a>            <span class="c1"># grab the current frame</span>
-</span><span id="CameraFaceDetector.run-27"><a href="#CameraFaceDetector.run-27"><span class="linenos">27</span></a>            <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</span><span id="CameraFaceDetector.run-28"><a href="#CameraFaceDetector.run-28"><span class="linenos">28</span></a>
-</span><span id="CameraFaceDetector.run-29"><a href="#CameraFaceDetector.run-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
-</span><span id="CameraFaceDetector.run-30"><a href="#CameraFaceDetector.run-30"><span class="linenos">30</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
-</span><span id="CameraFaceDetector.run-31"><a href="#CameraFaceDetector.run-31"><span class="linenos">31</span></a>
-</span><span id="CameraFaceDetector.run-32"><a href="#CameraFaceDetector.run-32"><span class="linenos">32</span></a>            <span class="c1"># show the frame</span>
-</span><span id="CameraFaceDetector.run-33"><a href="#CameraFaceDetector.run-33"><span class="linenos">33</span></a>            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
-</span><span id="CameraFaceDetector.run-34"><a href="#CameraFaceDetector.run-34"><span class="linenos">34</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
-</span><span id="CameraFaceDetector.run-35"><a href="#CameraFaceDetector.run-35"><span class="linenos">35</span></a>
-</span><span id="CameraFaceDetector.run-36"><a href="#CameraFaceDetector.run-36"><span class="linenos">36</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
-</span><span id="CameraFaceDetector.run-37"><a href="#CameraFaceDetector.run-37"><span class="linenos">37</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
-</span><span id="CameraFaceDetector.run-38"><a href="#CameraFaceDetector.run-38"><span class="linenos">38</span></a>                <span class="k">break</span>
-</span><span id="CameraFaceDetector.run-39"><a href="#CameraFaceDetector.run-39"><span class="linenos">39</span></a>
-</span><span id="CameraFaceDetector.run-40"><a href="#CameraFaceDetector.run-40"><span class="linenos">40</span></a>        <span class="c1"># do a bit of cleanup</span>
-</span><span id="CameraFaceDetector.run-41"><a href="#CameraFaceDetector.run-41"><span class="linenos">41</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
-</span><span id="CameraFaceDetector.run-42"><a href="#CameraFaceDetector.run-42"><span class="linenos">42</span></a>        <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+    <a class="headerlink" href="#CameraFaceRecognizer.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CameraFaceRecognizer.run-12"><a href="#CameraFaceRecognizer.run-12"><span class="linenos">12</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s1">&#39;../output/model.xml&#39;</span><span class="p">):</span>
+</span><span id="CameraFaceRecognizer.run-13"><a href="#CameraFaceRecognizer.run-13"><span class="linenos">13</span></a>        <span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CameraFaceRecognizer.run-14"><a href="#CameraFaceRecognizer.run-14"><span class="linenos">14</span></a><span class="sd">        It loads the model, captures the video from the webcam, and then runs the model on the video</span>
+</span><span id="CameraFaceRecognizer.run-15"><a href="#CameraFaceRecognizer.run-15"><span class="linenos">15</span></a><span class="sd">        frames</span>
+</span><span id="CameraFaceRecognizer.run-16"><a href="#CameraFaceRecognizer.run-16"><span class="linenos">16</span></a><span class="sd">        </span>
+</span><span id="CameraFaceRecognizer.run-17"><a href="#CameraFaceRecognizer.run-17"><span class="linenos">17</span></a><span class="sd">        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)</span>
+</span><span id="CameraFaceRecognizer.run-18"><a href="#CameraFaceRecognizer.run-18"><span class="linenos">18</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CameraFaceRecognizer.run-19"><a href="#CameraFaceRecognizer.run-19"><span class="linenos">19</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer.run-20"><a href="#CameraFaceRecognizer.run-20"><span class="linenos">20</span></a>
+</span><span id="CameraFaceRecognizer.run-21"><a href="#CameraFaceRecognizer.run-21"><span class="linenos">21</span></a>        <span class="c1"># initialize the video capture</span>
+</span><span id="CameraFaceRecognizer.run-22"><a href="#CameraFaceRecognizer.run-22"><span class="linenos">22</span></a>        <span class="n">cap</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer.run-23"><a href="#CameraFaceRecognizer.run-23"><span class="linenos">23</span></a>
+</span><span id="CameraFaceRecognizer.run-24"><a href="#CameraFaceRecognizer.run-24"><span class="linenos">24</span></a>        <span class="c1"># loop over the frames from the video stream</span>
+</span><span id="CameraFaceRecognizer.run-25"><a href="#CameraFaceRecognizer.run-25"><span class="linenos">25</span></a>        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span><span id="CameraFaceRecognizer.run-26"><a href="#CameraFaceRecognizer.run-26"><span class="linenos">26</span></a>            <span class="c1"># grab the current frame</span>
+</span><span id="CameraFaceRecognizer.run-27"><a href="#CameraFaceRecognizer.run-27"><span class="linenos">27</span></a>            <span class="n">ret</span><span class="p">,</span> <span class="n">frame</span> <span class="o">=</span> <span class="n">cap</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span><span id="CameraFaceRecognizer.run-28"><a href="#CameraFaceRecognizer.run-28"><span class="linenos">28</span></a>
+</span><span id="CameraFaceRecognizer.run-29"><a href="#CameraFaceRecognizer.run-29"><span class="linenos">29</span></a>            <span class="n">face_detections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer.run-30"><a href="#CameraFaceRecognizer.run-30"><span class="linenos">30</span></a>            <span class="nb">print</span><span class="p">(</span><span class="n">face_detections</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer.run-31"><a href="#CameraFaceRecognizer.run-31"><span class="linenos">31</span></a>
+</span><span id="CameraFaceRecognizer.run-32"><a href="#CameraFaceRecognizer.run-32"><span class="linenos">32</span></a>            <span class="c1"># show the frame</span>
+</span><span id="CameraFaceRecognizer.run-33"><a href="#CameraFaceRecognizer.run-33"><span class="linenos">33</span></a>            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+</span><span id="CameraFaceRecognizer.run-34"><a href="#CameraFaceRecognizer.run-34"><span class="linenos">34</span></a>            <span class="n">key</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span>
+</span><span id="CameraFaceRecognizer.run-35"><a href="#CameraFaceRecognizer.run-35"><span class="linenos">35</span></a>
+</span><span id="CameraFaceRecognizer.run-36"><a href="#CameraFaceRecognizer.run-36"><span class="linenos">36</span></a>            <span class="c1"># if the `q` key was pressed, break from the loop</span>
+</span><span id="CameraFaceRecognizer.run-37"><a href="#CameraFaceRecognizer.run-37"><span class="linenos">37</span></a>            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;q&quot;</span><span class="p">):</span>
+</span><span id="CameraFaceRecognizer.run-38"><a href="#CameraFaceRecognizer.run-38"><span class="linenos">38</span></a>                <span class="k">break</span>
+</span><span id="CameraFaceRecognizer.run-39"><a href="#CameraFaceRecognizer.run-39"><span class="linenos">39</span></a>
+</span><span id="CameraFaceRecognizer.run-40"><a href="#CameraFaceRecognizer.run-40"><span class="linenos">40</span></a>        <span class="c1"># do a bit of cleanup</span>
+</span><span id="CameraFaceRecognizer.run-41"><a href="#CameraFaceRecognizer.run-41"><span class="linenos">41</span></a>        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</span><span id="CameraFaceRecognizer.run-42"><a href="#CameraFaceRecognizer.run-42"><span class="linenos">42</span></a>        <span class="n">cap</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -219,19 +219,12 @@ frames</p>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
-                                    <div><dt><a href="FaceDetector.html#FaceDetector">src.FaceDetector.FaceDetector</a></dt>
-                                <dd id="CameraFaceDetector.__init__" class="function"><a href="FaceDetector.html#FaceDetector.__init__">FaceDetector</a></dd>
-                <dd id="CameraFaceDetector.load_model" class="function"><a href="FaceDetector.html#FaceDetector.load_model">load_model</a></dd>
-                <dd id="CameraFaceDetector.detect_faces" class="function"><a href="FaceDetector.html#FaceDetector.detect_faces">detect_faces</a></dd>
-                <dd id="CameraFaceDetector.recognize" class="function"><a href="FaceDetector.html#FaceDetector.recognize">recognize</a></dd>
-                <dd id="CameraFaceDetector.mark_face" class="function"><a href="FaceDetector.html#FaceDetector.mark_face">mark_face</a></dd>
-
-            </div>
-            <div><dt><a href="Recognizer.html#Recognizer">src.Recognizer.Recognizer</a></dt>
-                                <dd id="CameraFaceDetector.get_people_register" class="function"><a href="Recognizer.html#Recognizer.get_people_register">get_people_register</a></dd>
-                <dd id="CameraFaceDetector.set_people_register" class="function"><a href="Recognizer.html#Recognizer.set_people_register">set_people_register</a></dd>
-                <dd id="CameraFaceDetector.get_person_index" class="function"><a href="Recognizer.html#Recognizer.get_person_index">get_person_index</a></dd>
-                <dd id="CameraFaceDetector.get_person_name" class="function"><a href="Recognizer.html#Recognizer.get_person_name">get_person_name</a></dd>
+                                    <div><dt><a href="FaceRecognizer.html#FaceRecognizer">src.FaceRecognizer.FaceRecognizer</a></dt>
+                                <dd id="CameraFaceRecognizer.__init__" class="function"><a href="FaceRecognizer.html#FaceRecognizer.__init__">FaceRecognizer</a></dd>
+                <dd id="CameraFaceRecognizer.load_model" class="function"><a href="FaceRecognizer.html#FaceRecognizer.load_model">load_model</a></dd>
+                <dd id="CameraFaceRecognizer.recognize" class="function"><a href="FaceRecognizer.html#FaceRecognizer.recognize">recognize</a></dd>
+                <dd id="CameraFaceRecognizer.detect_faces" class="function"><a href="FaceRecognizer.html#FaceRecognizer.detect_faces">detect_faces</a></dd>
+                <dd id="CameraFaceRecognizer.mark_face" class="function"><a href="FaceRecognizer.html#FaceRecognizer.mark_face">mark_face</a></dd>
 
             </div>
                                 </dl>

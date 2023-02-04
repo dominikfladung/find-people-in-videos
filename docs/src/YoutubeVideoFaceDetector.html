@@ -72,11 +72,11 @@ detect faces in the video</p>
 </span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a><span class="kn">import</span> <span class="nn">re</span>
 </span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">src.VideoFaceDetector</span> <span class="kn">import</span> <span class="n">VideoFaceDetector</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="kn">from</span> <span class="nn">src.VideoFaceDetector</span> <span class="kn">import</span> <span class="n">VideoFaceRecognizer</span>
 </span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="kn">from</span> <span class="nn">src.YoutubeDownloader</span> <span class="kn">import</span> <span class="n">YoutubeDownloader</span>
 </span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a>
 </span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">YoutubeVideoFaceDetector</span><span class="p">(</span><span class="n">VideoFaceDetector</span><span class="p">):</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="k">class</span> <span class="nc">YoutubeVideoFaceDetector</span><span class="p">(</span><span class="n">VideoFaceRecognizer</span><span class="p">):</span>
 </span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a>    <span class="nd">@staticmethod</span>
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a>    <span class="k">def</span> <span class="nf">make_url_filename_safe</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a>        <span class="sd">&quot;&quot;&quot;</span>
@@ -102,8 +102,8 @@ detect faces in the video</p>
 </span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>
 </span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a>
 </span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>    <span class="n">url</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Url: &quot;</span><span class="p">)</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>    <span class="n">YoutubeVideoFaceDetector</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>    <span class="n">input_url</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Url: &quot;</span><span class="p">)</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>    <span class="n">YoutubeVideoFaceDetector</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">input_url</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -113,13 +113,13 @@ detect faces in the video</p>
 <div class="attr class">
             
     <span class="def">class</span>
-    <span class="name">YoutubeVideoFaceDetector</span><wbr>(<span class="base"><a href="VideoFaceDetector.html#VideoFaceDetector">src.VideoFaceDetector.VideoFaceDetector</a></span>):
+    <span class="name">YoutubeVideoFaceDetector</span><wbr>(<span class="base"><a href="VideoFaceDetector.html#VideoFaceRecognizer">src.VideoFaceDetector.VideoFaceRecognizer</a></span>):
 
                 <label class="view-source-button" for="YoutubeVideoFaceDetector-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#YoutubeVideoFaceDetector"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="YoutubeVideoFaceDetector-12"><a href="#YoutubeVideoFaceDetector-12"><span class="linenos">12</span></a><span class="k">class</span> <span class="nc">YoutubeVideoFaceDetector</span><span class="p">(</span><span class="n">VideoFaceDetector</span><span class="p">):</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="YoutubeVideoFaceDetector-12"><a href="#YoutubeVideoFaceDetector-12"><span class="linenos">12</span></a><span class="k">class</span> <span class="nc">YoutubeVideoFaceDetector</span><span class="p">(</span><span class="n">VideoFaceRecognizer</span><span class="p">):</span>
 </span><span id="YoutubeVideoFaceDetector-13"><a href="#YoutubeVideoFaceDetector-13"><span class="linenos">13</span></a>    <span class="nd">@staticmethod</span>
 </span><span id="YoutubeVideoFaceDetector-14"><a href="#YoutubeVideoFaceDetector-14"><span class="linenos">14</span></a>    <span class="k">def</span> <span class="nf">make_url_filename_safe</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
 </span><span id="YoutubeVideoFaceDetector-15"><a href="#YoutubeVideoFaceDetector-15"><span class="linenos">15</span></a>        <span class="sd">&quot;&quot;&quot;</span>
@@ -231,23 +231,16 @@ periods, or spaces with underscores</p>
                             <div class="inherited">
                                 <h5>Inherited Members</h5>
                                 <dl>
-                                    <div><dt><a href="FaceDetector.html#FaceDetector">src.FaceDetector.FaceDetector</a></dt>
-                                <dd id="YoutubeVideoFaceDetector.__init__" class="function"><a href="FaceDetector.html#FaceDetector.__init__">FaceDetector</a></dd>
-                <dd id="YoutubeVideoFaceDetector.load_model" class="function"><a href="FaceDetector.html#FaceDetector.load_model">load_model</a></dd>
-                <dd id="YoutubeVideoFaceDetector.detect_faces" class="function"><a href="FaceDetector.html#FaceDetector.detect_faces">detect_faces</a></dd>
-                <dd id="YoutubeVideoFaceDetector.recognize" class="function"><a href="FaceDetector.html#FaceDetector.recognize">recognize</a></dd>
-                <dd id="YoutubeVideoFaceDetector.mark_face" class="function"><a href="FaceDetector.html#FaceDetector.mark_face">mark_face</a></dd>
+                                    <div><dt><a href="FaceRecognizer.html#FaceRecognizer">src.FaceRecognizer.FaceRecognizer</a></dt>
+                                <dd id="YoutubeVideoFaceDetector.__init__" class="function"><a href="FaceRecognizer.html#FaceRecognizer.__init__">FaceRecognizer</a></dd>
+                <dd id="YoutubeVideoFaceDetector.load_model" class="function"><a href="FaceRecognizer.html#FaceRecognizer.load_model">load_model</a></dd>
+                <dd id="YoutubeVideoFaceDetector.recognize" class="function"><a href="FaceRecognizer.html#FaceRecognizer.recognize">recognize</a></dd>
+                <dd id="YoutubeVideoFaceDetector.detect_faces" class="function"><a href="FaceRecognizer.html#FaceRecognizer.detect_faces">detect_faces</a></dd>
+                <dd id="YoutubeVideoFaceDetector.mark_face" class="function"><a href="FaceRecognizer.html#FaceRecognizer.mark_face">mark_face</a></dd>
 
             </div>
-            <div><dt><a href="VideoFaceDetector.html#VideoFaceDetector">src.VideoFaceDetector.VideoFaceDetector</a></dt>
-                                <dd id="YoutubeVideoFaceDetector.display_frame" class="function"><a href="VideoFaceDetector.html#VideoFaceDetector.display_frame">display_frame</a></dd>
-
-            </div>
-            <div><dt><a href="Recognizer.html#Recognizer">src.Recognizer.Recognizer</a></dt>
-                                <dd id="YoutubeVideoFaceDetector.get_people_register" class="function"><a href="Recognizer.html#Recognizer.get_people_register">get_people_register</a></dd>
-                <dd id="YoutubeVideoFaceDetector.set_people_register" class="function"><a href="Recognizer.html#Recognizer.set_people_register">set_people_register</a></dd>
-                <dd id="YoutubeVideoFaceDetector.get_person_index" class="function"><a href="Recognizer.html#Recognizer.get_person_index">get_person_index</a></dd>
-                <dd id="YoutubeVideoFaceDetector.get_person_name" class="function"><a href="Recognizer.html#Recognizer.get_person_name">get_person_name</a></dd>
+            <div><dt><a href="VideoFaceDetector.html#VideoFaceRecognizer">src.VideoFaceDetector.VideoFaceRecognizer</a></dt>
+                                <dd id="YoutubeVideoFaceDetector.display_frame" class="function"><a href="VideoFaceDetector.html#VideoFaceRecognizer.display_frame">display_frame</a></dd>
 
             </div>
                                 </dl>
