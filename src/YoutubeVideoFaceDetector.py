@@ -8,7 +8,7 @@ from src.VideoFaceDetector import VideoFaceRecognizer
 from src.YoutubeDownloader import YoutubeDownloader
 
 
-class YoutubeVideoFaceDetector(VideoFaceRecognizer):
+class YoutubeVideoFaceDetector:
     @staticmethod
     def make_url_filename_safe(url):
         """
@@ -30,7 +30,7 @@ class YoutubeVideoFaceDetector(VideoFaceRecognizer):
         """
         filename = "videos/" + self.make_url_filename_safe(url) + ".mp4"
         YoutubeDownloader().download(url, filename)
-        super().run(filename, model_path)
+        VideoFaceRecognizer().run(filename, model_path)
 
 
 if __name__ == "__main__":

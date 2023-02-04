@@ -1,3 +1,6 @@
+"""
+Example for using HOGDescriptor
+"""
 # https://thedatafrog.com/en/articles/human-detection-video/
 
 # import the necessary packages

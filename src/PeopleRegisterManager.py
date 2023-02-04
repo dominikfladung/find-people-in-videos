@@ -16,7 +16,7 @@ class PeopleRegisterManager:
         :return: A dictionary of the people in the register.
         """
         if not os.path.isfile(self.register_json_path):
-            return
+            return None
 
         with open(self.register_json_path) as json_file:
             return json.load(json_file)
@@ -27,7 +27,7 @@ class PeopleRegisterManager:
 
         :param dictionary: The dictionary that you want to save to the json file
         """
-        with open(self.register_json_path, 'w') as f:
+        with open(self.register_json_path, 'w', encoding="utf-8") as f:
             json.dump(dictionary, f)
 
     def get_person_index(self, name):

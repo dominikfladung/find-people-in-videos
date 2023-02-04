@@ -73,6 +73,5 @@ class FaceRecognizer:
         cv2.rectangle(image, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
                       (0, 255, 0), 2)
         label = self.people_register_manager.get_person_name(detection.label)
-        cv2.putText(image, "{}, {}%".format(label, round(detection.confidence)),
-                    (detection.x, detection.y - 10),
+        cv2.putText(image, f"{label}, {round(detection.confidence)}%", (detection.x, detection.y - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)

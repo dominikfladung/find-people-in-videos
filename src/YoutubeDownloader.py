@@ -1,5 +1,5 @@
 """
-This class is used to download videos from youtube
+This class is used to download videos from YouTube
 """
 import youtube_dl
 
