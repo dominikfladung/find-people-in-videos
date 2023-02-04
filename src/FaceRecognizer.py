@@ -9,9 +9,7 @@ from src.PeopleRegisterManager import PeopleRegisterManager
 
 class FaceRecognizer:
     def __init__(self, cascade_classifier='cascades/data/haarcascade_frontalface_default.xml', debugging=False):
-        # Load the Haar cascades
         self.face_cascade = cv2.CascadeClassifier(cascade_classifier)
-        # Initialize the recognizer
         self.recognizer = cv2.face.LBPHFaceRecognizer_create()
         self.people_register_manager = PeopleRegisterManager()
         self.debugging = debugging
@@ -25,17 +23,17 @@ class FaceRecognizer:
         # load the model from the given path
         self.recognizer.read(model_path)
 
-    def recognize(self, frame, mark_face=True):
+    def recognize(self, image, mark_face=True):
         """
-        It takes a frame, converts it to grayscale, detects faces, and then for each face, it predicts
+        It takes an image, converts it to grayscale, detects faces, and then for each face, it predicts
         the label and confidence of the face
 
-        :param frame: The frame to recognize faces in
+        :param image: The image to recognize faces in
         :param mark_face: If True, the face will be marked with a rectangle and the label of the face,
         defaults to True (optional)
         :return: A list of FaceDetection objects.
         """
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         faces = self.detect_faces(gray)
         face_detections = []
 
@@ -46,35 +44,35 @@ class FaceRecognizer:
             face_detections.append(detection)
 
             if mark_face:
-                self.mark_face(frame, detection)
+                self.mark_face(image, detection)
 
         return face_detections
 
-    def detect_faces(self, frame):
+    def detect_faces(self, image):
         """
-        It takes a frame as input, and returns a list of rectangles where it thinks it found a face
+        It takes an image as input, and returns a list of rectangles where it thinks it found a face
 
-        :param frame: The frame to detect faces in
+        :param image: The image to detect faces in
         :return: The detectMultiScale function is a general function that detects objects. Since we are
         calling it on the face cascade, that’s what it detects. The first option is the grayscale image.
         The second is the scaleFactor. Since some faces may be closer to the camera, they would appear
         bigger than the faces in the back. The scale factor compensates for this. The detection
         algorithm
         """
-        return self.face_cascade.detectMultiScale(frame, 1.3, 5)
+        return self.face_cascade.detectMultiScale(image, 1.3, 5)
 
-    def mark_face(self, frame, detection):
+    def mark_face(self, image, detection):
         """
-        It takes a frame and a detection object as input, and draws a rectangle around the face and
-        writes the name of the person and the confidence level on the frame
+        It takes an image and a detection object as input, and draws a rectangle around the face and
+        writes the name of the person and the confidence level on the image
 
-        :param frame: The frame to draw the detection on
+        :param image: The image to draw the detection on
         :param detection: The detection object returned by the detector
         """
-        # draw the label and confidence on the frame
-        cv2.rectangle(frame, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
+        # draw the label and confidence on the image
+        cv2.rectangle(image, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
                       (0, 255, 0), 2)
-        label = self.get_person_name(detection.label)
-        cv2.putText(frame, "{}, {}%".format(label, round(detection.confidence)),
+        label = self.people_register_manager.get_person_name(detection.label)
+        cv2.putText(image, "{}, {}%".format(label, round(detection.confidence)),
                     (detection.x, detection.y - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)

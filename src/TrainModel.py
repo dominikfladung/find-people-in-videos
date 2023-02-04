@@ -34,13 +34,12 @@ class ModelTrainer(FaceRecognizer):
         :param image: The image in which we want to detect faces
         :return: cropped image or None if no face was found
         """
-        face_detections = self.detect_faces(image)
-
-        if len(face_detections) == 0:
+        face_rects = self.detect_faces(image)
+        if len(face_rects) == 0:
             return None
 
-        (x, y, w, h) = face_detections[0]  # the datasets are only images with one face
-        return image[x:w, y:h]
+        (x, y, w, h) = face_rects[0] # in dataset only images with one person are used
+        return image[y:y + h, x:x + w]
 
     def prepare_dataset(self, data_folder_path):
         """
@@ -102,10 +101,9 @@ class ModelTrainer(FaceRecognizer):
             # go through each image name and read image
             for i, image_name in enumerate(images_names):
                 image_path = dir_path + "/" + image_name
-                image = cv2.imread(image_path)
-                gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-
-                face_image = self.crop_face(gray)
+                origin_image = cv2.imread(image_path)
+                gray_image = cv2.cvtColor(origin_image, cv2.COLOR_BGR2GRAY)
+                face_image = self.crop_face(gray_image)
 
                 if face_image is not None and face_image.any():
                     faces.append(face_image)
