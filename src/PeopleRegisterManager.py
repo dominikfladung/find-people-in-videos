@@ -7,7 +7,11 @@ import os
 
 class PeopleRegisterManager:
     def __init__(self):
-        self.register_json_path = '../output/people_register.json'
+        self.register_json_path = None
+        self.people_register = None
+
+    def load(self, register_json_path):
+        self.register_json_path = register_json_path
         self.people_register = self.get_people_register()
 
     def get_people_register(self):

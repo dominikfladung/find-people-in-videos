@@ -8,7 +8,7 @@ from src.PeopleRegisterManager import PeopleRegisterManager
 
 
 class FaceRecognizer:
-    def __init__(self, cascade_classifier='../../cascades/data/haarcascade_frontalface_default.xml', debugging=False):
+    def __init__(self, cascade_classifier='../cascades/data/haarcascade_frontalface_alt2.xml', debugging=False):
         self.face_cascade = cv2.CascadeClassifier(cascade_classifier)
         self.recognizer = cv2.face.LBPHFaceRecognizer_create()
         self.people_register_manager = PeopleRegisterManager()
@@ -21,6 +21,7 @@ class FaceRecognizer:
         :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
         """
         # load the model from the given path
+        self.people_register_manager.load(model_path.replace(".xml", ".json"))
         self.recognizer.read(model_path)
 
     def recognize(self, image, mark_face=True):

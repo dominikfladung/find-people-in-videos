@@ -10,12 +10,16 @@ from progress.bar import Bar
 
 
 class ModelTrainer(FaceRecognizer):
-    def train(self):
+    def __init__(self, cascade_classifier='../cascades/data/haarcascade_frontalface_alt2.xml', debugging=False):
+        super().__init__(cascade_classifier, debugging)
+        self.people_register = dict()
+
+    def train(self, dataset_path="../traindata"):
         """
         It takes the images and labels from the prepare_dataset function and trains the recognizer with
         them
         """
-        faces, labels = self.prepare_dataset("../traindata")
+        faces, labels = self.prepare_dataset(dataset_path)
         print("Start Training")
         self.recognizer.train(faces, np.array(labels))
 
@@ -26,6 +30,8 @@ class ModelTrainer(FaceRecognizer):
         :param path: The path to the file where the model will be saved, defaults to ../output/model.xml
         (optional)
         """
+        self.people_register_manager.register_json_path = path.replace(".xml", ".json")
+        self.people_register_manager.set_people_register(self.people_register)
         self.recognizer.write(path)
 
     def crop_face(self, image):
@@ -56,22 +62,20 @@ class ModelTrainer(FaceRecognizer):
         faces = []
         labels = []
         people_counter = 0
-        people_register = dict()
+
 
         print("Start preparing dataset")
 
         # Let's go through each directory and read images within it
         for dir_name in dirs:
             people_counter += 1
-            people_register[people_counter] = dir_name
+            self.people_register[people_counter] = dir_name
             dir_path = data_folder_path + "/" + dir_name
             self.prepare_dataset_folder(dir_path, faces, labels, people_counter)
 
         cv2.destroyAllWindows()
         cv2.waitKey(1)
         cv2.destroyAllWindows()
-
-        self.people_register_manager.set_people_register(people_register)
 
         print("")
         print("Done preparing dataset")
