@@ -7,7 +7,7 @@ import cv2
 from src.FaceRecognizer import FaceRecognizer
 
 
-class ImageFileFaceRecognizer(FaceRecognizer):
+class ImageFileFaceDetector(FaceRecognizer):
     def run(self, model_path='../output/model.xml', path="traindata/kit_harington"):
         """
         It loads the model, then for each image in the folder, it detects faces and prints the results,
@@ -49,4 +49,4 @@ class ImageFileFaceRecognizer(FaceRecognizer):
 
 if __name__ == "__main__":
     images_path = input("Path: ")
-    ImageFileFaceRecognizer().run(path=images_path)
+    ImageFileFaceDetector().run(path=images_path)
