@@ -7,7 +7,7 @@ import cv2
 from src.FaceRecognizer import FaceRecognizer
 
 
-class CameraFaceRecognizer(FaceRecognizer):
+class CameraFaceDetector(FaceRecognizer):
     def run(self, model_path='../output/model.xml'):
         """
         It loads the model, captures the video from the webcam, and then runs the model on the video
@@ -42,4 +42,4 @@ class CameraFaceRecognizer(FaceRecognizer):
 
 
 if __name__ == "__main__":
-    CameraFaceRecognizer().run()
+    CameraFaceDetector().run()
