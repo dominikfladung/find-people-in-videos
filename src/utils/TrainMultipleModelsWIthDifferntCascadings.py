@@ -9,7 +9,7 @@ for filename in os.listdir(CASCADE_DIR):
     if filename.endswith('.xml'):
         cascade = filename.split(".")[0]
         start_time = time.time()
-        trainer = ModelTrainer(cascade_classifier=f'{CASCADE_DIR}/{cascade}', debugging=True)
+        trainer = ModelTrainer(cascade_classifier=f'{CASCADE_DIR}/{cascade}.xml', debugging=True)
         trainer.train(output_path=f'{OUTPUT_DIR}/{cascade}_model')
         duration = time.time() - start_time
         print("Done in", str(duration) + "s")
