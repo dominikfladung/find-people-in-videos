@@ -8,7 +8,7 @@ from src.FaceRecognizer import FaceRecognizer
 
 
 class CameraFaceDetector(FaceRecognizer):
-    def run(self, model_path='../output/model.xml'):
+    def run(self, model_path='../../output/model.xml'):
         """
         It loads the model, captures the video from the webcam, and then runs the model on the video
         frames

@@ -5,12 +5,14 @@ import os
 import cv2
 import numpy as np
 import time
+
+from src import OUTPUT_DIR, CASCADE_DIR
 from src.FaceRecognizer import FaceRecognizer
 from progress.bar import Bar
 
 
 class ModelTrainer(FaceRecognizer):
-    def __init__(self, cascade_classifier='../cascades/data/haarcascade_frontalface_alt2.xml', debugging=False):
+    def __init__(self, cascade_classifier=CASCADE_DIR + '/haarcascade_frontalface_default.xml', debugging=False):
         super().__init__(cascade_classifier, debugging)
         self.people_register = dict()
 
@@ -44,7 +46,7 @@ class ModelTrainer(FaceRecognizer):
         if len(face_rects) == 0:
             return None
 
-        (x, y, w, h) = face_rects[0] # in dataset only images with one person are used
+        (x, y, w, h) = face_rects[0]  # in dataset only images with one person are used
         return image[y:y + h, x:x + w]
 
     def prepare_dataset(self, data_folder_path):
@@ -62,7 +64,6 @@ class ModelTrainer(FaceRecognizer):
         faces = []
         labels = []
         people_counter = 0
-
 
         print("Start preparing dataset")
 
@@ -102,6 +103,9 @@ class ModelTrainer(FaceRecognizer):
 
         images_names = os.listdir(dir_path)
         with Bar('Running: ' + dir_path, suffix='%(percent).1f%%', max=len(images_names)) as bar:
+            detection_output_path = OUTPUT_DIR + '/traindata_detections/'
+            self.clear_dir(detection_output_path)
+
             # go through each image name and read image
             for i, image_name in enumerate(images_names):
                 image_path = dir_path + "/" + image_name
@@ -111,9 +115,21 @@ class ModelTrainer(FaceRecognizer):
 
                 if face_image is not None and face_image.any():
                     faces.append(face_image)
+                    output_path = detection_output_path + dir_path
+                    os.makedirs(output_path, exist_ok=True)
+                    cv2.imwrite(output_path + "/" + image_name, face_image)
                     labels.append(people_counter)
 
                 bar.next()
+
+    @staticmethod
+    def clear_dir(dir):
+        if not os.path.isdir(dir):
+            return
+
+        for f in os.listdir(dir):
+            os.remove(os.path.join(dir, f))
+        os.removedirs(dir)
 
 
 if __name__ == "__main__":

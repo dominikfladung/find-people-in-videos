@@ -1,4 +1,6 @@
 import os
+
+from src import CASCADE_DIR
 from src.detectors.ImageFileGenericFaceDetector import ImageFileGenericFaceDetector
 
 filenames = os.listdir('../../cascades/data')
@@ -6,7 +8,7 @@ filenames = os.listdir('../../cascades/data')
 for filename in filenames:
     if filename.endswith('.xml'):
         cascade = filename.split(".")[0]
-        cascade_classifier = f'../../cascades/data/{cascade}.xml'
+        cascade_classifier = f'{CASCADE_DIR}/{cascade}.xml'
         detector = ImageFileGenericFaceDetector(cascade_classifier=cascade_classifier, debugging=False)
         score = detector.run(path="../../traindata/dominik_fladung", model_path=f'../../output/{cascade}_model.xml')
         print(f'{filename} - Score: {str(score)}')

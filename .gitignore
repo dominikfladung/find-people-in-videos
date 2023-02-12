@@ -131,4 +131,5 @@ dmypy.json
 .idea
 /examples/images/dominik_fladung
 /**/dominik_fladung/**
+/**/dominik_fladung_2/**
 /examples/images/**/*.*.detect.jpg

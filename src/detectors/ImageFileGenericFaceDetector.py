@@ -3,6 +3,7 @@ It's a face detector that uses the OpenCV library to detect faces in images
 """
 import cv2
 
+from src import CASCADE_DIR
 from src.FaceDetection import FaceDetection
 from src.detectors.ImageFileFaceDetector import ImageFileFaceDetector
 
@@ -40,4 +41,4 @@ class ImageFileGenericFaceDetector(ImageFileFaceDetector):
 if __name__ == "__main__":
     #images_path = input("Path: ")
     images_path = '../../traindata/dominik_fladung'
-    ImageFileGenericFaceDetector(f'../../cascades/data/haarcascade_frontalface_default.xml', debugging=True).run(path=images_path)
+    ImageFileGenericFaceDetector(f'{CASCADE_DIR}/haarcascade_frontalface_default.xml', debugging=True).run(path=images_path)
