@@ -8,7 +8,7 @@ from src.FaceRecognizer import FaceRecognizer
 
 
 class ImageFileFaceDetector(FaceRecognizer):
-    def run(self, model_path='../output/model.xml', path="traindata/kit_harington"):
+    def run(self, model_path, path):
         """
         It loads the model, then for each image in the folder, it detects faces and prints the results,
         then it resizes the image and displays it

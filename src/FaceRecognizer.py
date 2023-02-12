@@ -15,15 +15,15 @@ class FaceRecognizer:
         self.people_register_manager = PeopleRegisterManager()
         self.debugging = debugging
 
-    def load_model(self, model_path='../output/model.xml'):
+    def load_model(self, output_path):
         """
         The function reads the model from the given path and loads it into the recognizer.
 
-        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
+        :param output_path: The path to the model file, defaults to ../output/model.xml (optional)
         """
         # load the model from the given path
-        self.people_register_manager.load(model_path.replace(".xml", ".json"))
-        self.recognizer.read(model_path)
+        self.people_register_manager.load(output_path + "/people_register.json")
+        self.recognizer.read(output_path + "/model.xml")
 
     def recognize(self, image, mark_face=True):
         """

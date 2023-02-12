@@ -9,7 +9,7 @@ from src.detectors.ImageFileFaceDetector import ImageFileFaceDetector
 
 
 class ImageFileGenericFaceDetector(ImageFileFaceDetector):
-    def run(self, model_path='../../output/model.xml', path="../traindata/kit_harington"):
+    def run(self, model_path, path):
         """
         It loads the model, then for each image in the folder, it detects faces and prints the results,
         then it resizes the image and displays it
@@ -39,6 +39,7 @@ class ImageFileGenericFaceDetector(ImageFileFaceDetector):
 
 
 if __name__ == "__main__":
-    #images_path = input("Path: ")
+    # images_path = input("Path: ")
     images_path = '../../traindata/dominik_fladung'
-    ImageFileGenericFaceDetector(f'{CASCADE_DIR}/haarcascade_frontalface_default.xml', debugging=True).run(path=images_path)
+    ImageFileGenericFaceDetector(f'{CASCADE_DIR}/haarcascade_frontalface_default.xml', debugging=True).run(
+        path=images_path)

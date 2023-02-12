@@ -133,3 +133,4 @@ dmypy.json
 /**/dominik_fladung/**
 /**/dominik_fladung_2/**
 /examples/images/**/*.*.detect.jpg
+/output

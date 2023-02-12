@@ -8,7 +8,7 @@ from src.FaceRecognizer import FaceRecognizer
 
 
 class VideoFaceRecognizer(FaceRecognizer):
-    def run(self, filename, model_path='../output/model.xml'):
+    def run(self, filename, model_path):
         """
         It takes a video file, runs the face recognition algorithm on each frame, and outputs a new
         video file with the face recognition results

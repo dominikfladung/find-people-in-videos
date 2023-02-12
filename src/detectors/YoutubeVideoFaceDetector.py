@@ -21,7 +21,7 @@ class YoutubeVideoFaceDetector:
         """
         return re.sub('[^\w\-_\. ]', '_', url)
 
-    def run(self, url, model_path='../output/model.xml'):
+    def run(self, url, model_path):
         """
         It downloads a video from a given URL, and then runs the run() function from the parent class
 
