@@ -13,12 +13,14 @@ class PrepareTrainData:
         It takes a filepath as an argument, and renames all the files in that directory to a number,
         starting from 1
         
+        :param suffix: filename suffix
         :param filepath: The path to the folder containing the files to be renamed
         """
         files = os.listdir(filepath)
 
         for i, file in enumerate(files):
-            target_filepath = os.path.join(filepath, str(i + 1) + suffix + '.jpeg')
+            extension = "." + file.split(".")[-1].lower()
+            target_filepath = os.path.join(filepath, str(i + 1) + suffix + extension)
             source_filepath = os.path.join(filepath, file)
             os.rename(source_filepath, target_filepath)
 

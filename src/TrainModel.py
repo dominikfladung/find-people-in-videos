@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 import time
 
-from src import OUTPUT_DIR, CASCADE_DIR
+from src import OUTPUT_DIR, CASCADE_DIR, TRAINDATA_DIR
 from src.FaceRecognizer import FaceRecognizer
 from progress.bar import Bar
 
@@ -16,16 +16,17 @@ class ModelTrainer(FaceRecognizer):
         super().__init__(cascade_classifier, debugging)
         self.people_register = dict()
 
-    def train(self, dataset_path="../traindata"):
+    def train(self, dataset_path=TRAINDATA_DIR, model_path=OUTPUT_DIR + '/model.xml'):
         """
         It takes the images and labels from the prepare_dataset function and trains the recognizer with
         them
         """
-        faces, labels = self.prepare_dataset(dataset_path)
+        faces, labels = self.prepare_dataset(dataset_path, model_path)
         print("Start Training")
         self.recognizer.train(faces, np.array(labels))
+        self.save(model_path)
 
-    def save(self, path='../output/model.xml'):
+    def save(self, path=OUTPUT_DIR + '../output/model.xml'):
         """
         It saves the model to a file
 
@@ -49,11 +50,12 @@ class ModelTrainer(FaceRecognizer):
         (x, y, w, h) = face_rects[0]  # in dataset only images with one person are used
         return image[y:y + h, x:x + w]
 
-    def prepare_dataset(self, data_folder_path):
+    def prepare_dataset(self, data_folder_path, model_path):
         """
         It takes a folder path as input, and returns two lists: one containing the images, and the other
         containing the labels
 
+        :param model_path: the model path
         :param data_folder_path: The path to the folder that contains the images of the people you want
         to recognize
         :return: faces and labels
@@ -72,9 +74,8 @@ class ModelTrainer(FaceRecognizer):
             people_counter += 1
             self.people_register[people_counter] = dir_name
             dir_path = data_folder_path + "/" + dir_name
-            self.prepare_dataset_folder(dir_path, faces, labels, people_counter)
+            self.prepare_dataset_folder(dir_path, faces, labels, people_counter, model_path)
 
-        cv2.destroyAllWindows()
         cv2.waitKey(1)
         cv2.destroyAllWindows()
 
@@ -83,12 +84,13 @@ class ModelTrainer(FaceRecognizer):
 
         return faces, labels
 
-    def prepare_dataset_folder(self, dir_path, faces, labels, people_counter):
+    def prepare_dataset_folder(self, dir_path, faces, labels, people_counter, model_path):
         """
         It takes a directory path, a list of faces, a list of labels, and a people counter. It then gets
         the images names that are inside the given subject directory, goes through each image name and
         reads the image, and then appends the face image and the label to the lists.
 
+        :param model_path: the output file path for the model
         :param dir_path: The path to the directory that contains the images of the person we want to
         train the model on
         :param faces: A list of face images
@@ -103,8 +105,8 @@ class ModelTrainer(FaceRecognizer):
 
         images_names = os.listdir(dir_path)
         with Bar('Running: ' + dir_path, suffix='%(percent).1f%%', max=len(images_names)) as bar:
-            detection_output_path = OUTPUT_DIR + '/traindata_detections/'
-            self.clear_dir(detection_output_path)
+            detection_output_path = model_path.replace(".xml", "")
+            #self.clear_dir(detection_output_path)
 
             # go through each image name and read image
             for i, image_name in enumerate(images_names):
@@ -115,27 +117,36 @@ class ModelTrainer(FaceRecognizer):
 
                 if face_image is not None and face_image.any():
                     faces.append(face_image)
-                    output_path = detection_output_path + dir_path
-                    os.makedirs(output_path, exist_ok=True)
-                    cv2.imwrite(output_path + "/" + image_name, face_image)
                     labels.append(people_counter)
+
+                    #  save the images which are used to train the model
+                    if self.debugging:
+                        output_path = detection_output_path + "/" + self.people_register[people_counter]
+                        os.makedirs(output_path, exist_ok=True)
+                        cv2.imwrite(output_path + "/" + image_name, face_image)
 
                 bar.next()
 
-    @staticmethod
-    def clear_dir(dir):
-        if not os.path.isdir(dir):
+    def clear_dir(self, path):
+        if not os.path.isdir(path):
             return
 
-        for f in os.listdir(dir):
-            os.remove(os.path.join(dir, f))
-        os.removedirs(dir)
+        for f in os.listdir(path):
+            current_path = os.path.join(path, f)
+            if os.path.isdir(current_path):
+                self.clear_dir(current_path)
+            else:
+                os.remove(current_path)
+
+        if not os.path.isdir(path):
+            return
+
+        os.removedirs(path)
 
 
 if __name__ == "__main__":
     start_time = time.time()
-    trainer = ModelTrainer()
+    trainer = ModelTrainer(debugging=True)
     trainer.train()
-    trainer.save()
     duration = time.time() - start_time
     print("Done in", str(duration) + "s")
