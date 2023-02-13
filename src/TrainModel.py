@@ -10,6 +10,8 @@ from src import OUTPUT_DIR, CASCADE_DIR, TRAINDATA_DIR
 from src.FaceRecognizer import FaceRecognizer
 from progress.bar import Bar
 
+from src.PeopleRegisterManager import PeopleRegisterManager
+
 
 class ModelTrainer(FaceRecognizer):
     def __init__(self, cascade_classifier=CASCADE_DIR + '/haarcascade_frontalface_default.xml', debugging=False):
@@ -43,7 +45,7 @@ class ModelTrainer(FaceRecognizer):
         :param path: The path to the file where the model will be saved, defaults to ../output/model.xml
         (optional)
         """
-        self.people_register_manager.register_json_path = path + "/people_register.json"
+        self.people_register_manager = PeopleRegisterManager(path)
         self.people_register_manager.set_people_register(self.people_register)
         self.recognizer.write(path + "/model.xml")
 
@@ -140,6 +142,12 @@ class ModelTrainer(FaceRecognizer):
                 bar.next()
 
     def clear_dir(self, path):
+        """
+        It deletes all files in a directory
+        
+        :param path: The path to the directory you want to clear
+        :return: the path of the file.
+        """
         if not os.path.isdir(path):
             return
 
@@ -149,9 +157,6 @@ class ModelTrainer(FaceRecognizer):
                 self.clear_dir(current_path)
             else:
                 os.remove(current_path)
-
-        if not os.path.isdir(path):
-            return
 
 
 if __name__ == "__main__":

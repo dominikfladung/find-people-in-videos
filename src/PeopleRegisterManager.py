@@ -6,19 +6,11 @@ import os
 
 
 class PeopleRegisterManager:
-    def __init__(self):
-        self.register_json_path = None
-        self.people_register = None
-
-    def load(self, register_json_path):
-        self.register_json_path = register_json_path
+    def __init__(self, model_path):
+        self.register_json_path = os.path.join(model_path, "people_register.json")
         self.people_register = self.get_people_register()
 
     def get_people_register(self):
-        """
-        If the file exists, open it and return the contents
-        :return: A dictionary of the people in the register.
-        """
         if not os.path.isfile(self.register_json_path):
             return None
 

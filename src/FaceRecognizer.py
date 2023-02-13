@@ -12,22 +12,22 @@ class FaceRecognizer:
     def __init__(self, cascade_classifier=CASCADE_DIR + '/haarcascade_frontalface_default.xml', debugging=False):
         self.face_cascade = cv2.CascadeClassifier(cascade_classifier)
         self.recognizer = cv2.face.LBPHFaceRecognizer_create()
-        self.people_register_manager = PeopleRegisterManager()
+        self.people_register_manager = None
         self.debugging = debugging
 
-    def load_model(self, output_path=OUTPUT_DIR + "/model"):
+    def load_model(self, model_path=OUTPUT_DIR + "/model"):
         """
         The function reads the model from the given path and loads it into the recognizer.
 
-        :param output_path: The path to the model file, defaults to ../output/model.xml (optional)
+        :param model_path: The path to the model folder
         """
 
-        if output_path is None:
-            output_path = OUTPUT_DIR + "/model"
+        if model_path is None:
+            model_path = OUTPUT_DIR + "/model"
 
         # load the model from the given path
-        self.people_register_manager.load(output_path + "/people_register.json")
-        self.recognizer.read(output_path + "/model.xml")
+        self.people_register_manager = PeopleRegisterManager(model_path)
+        self.recognizer.read(model_path + "/model.xml")
 
     def recognize(self, image, mark_face=True):
         """
@@ -82,5 +82,12 @@ class FaceRecognizer:
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
     def rectangle_around_face(self, image, detection):
+        """
+        It takes an image and a detection object as input and draws a rectangle around the face in the
+        image
+        
+        :param image: The image to draw the rectangle on
+        :param detection: The detection object returned by the detector
+        """
         cv2.rectangle(image, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
                       (0, 255, 0), 2)

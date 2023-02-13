@@ -134,3 +134,4 @@ dmypy.json
 /**/dominik_fladung_2/**
 /examples/images/**/*.*.detect.jpg
 /output
+/videos

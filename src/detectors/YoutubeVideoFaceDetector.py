@@ -4,6 +4,7 @@ detect faces in the video
 """
 import re
 
+from src import DEFAULT_MODEL_PATH
 from src.detectors.VideoFaceDetector import VideoFaceRecognizer
 from src.utils.YoutubeDownloader import YoutubeDownloader
 
@@ -26,7 +27,7 @@ class YoutubeVideoFaceDetector:
         It downloads a video from a given URL, and then runs the run() function from the parent class
 
         :param url: The URL of the YouTube video you want to download
-        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
+        :param model_path: The path to the model folder
         """
         filename = "videos/" + self.make_url_filename_safe(url) + ".mp4"
         YoutubeDownloader().download(url, filename)
@@ -35,4 +36,5 @@ class YoutubeVideoFaceDetector:
 
 if __name__ == "__main__":
     input_url = input("Url: ")
-    YoutubeVideoFaceDetector().run(input_url)
+    input_model_path = input(f"model_path ({DEFAULT_MODEL_PATH}): ") or DEFAULT_MODEL_PATH
+    YoutubeVideoFaceDetector().run(input_url, model_path=input_model_path)

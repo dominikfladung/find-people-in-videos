@@ -1,21 +1,22 @@
 """
 It's a face detector that uses the OpenCV library to detect faces in images
 """
+import os
+
 import cv2
 
-from src import CASCADE_DIR
+from src import CASCADE_DIR, DEFAULT_IMAGES_PATH
 from src.FaceDetection import FaceDetection
 from src.detectors.ImageFileFaceDetector import ImageFileFaceDetector
 
 
 class ImageFileGenericFaceDetector(ImageFileFaceDetector):
-    def run(self, model_path, path):
+    def run(self, path):
         """
-        It loads the model, then for each image in the folder, it detects faces and prints the results,
-        then it resizes the image and displays it
-
-        :param path: the path to the image folder
-        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
+        It takes a path to an image folder, and returns a score based on how many frames contain a face
+        
+        :param path: The path to the images
+        :return: The score of the model.
         """
         score = 0
 
@@ -39,7 +40,9 @@ class ImageFileGenericFaceDetector(ImageFileFaceDetector):
 
 
 if __name__ == "__main__":
-    # images_path = input("Path: ")
-    images_path = '../../traindata/dominik_fladung'
-    ImageFileGenericFaceDetector(f'{CASCADE_DIR}/haarcascade_frontalface_default.xml', debugging=True).run(
-        path=images_path)
+    default_cascade_classifier = os.path.join(CASCADE_DIR, 'haarcascade_frontalface_default.xml')
+    input_images_path = input(f"path ({DEFAULT_IMAGES_PATH}): ") or DEFAULT_IMAGES_PATH
+    input_cascade_classifier = input(f"Cascade ({default_cascade_classifier}): ") or default_cascade_classifier
+
+    detector = ImageFileGenericFaceDetector(cascade_classifier=input_cascade_classifier, debugging=True)
+    detector.run(path=input_images_path)

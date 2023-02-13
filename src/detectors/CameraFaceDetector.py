@@ -4,22 +4,23 @@ It's a face detector that uses a camera to detect faces
 
 import cv2
 
-from src import OUTPUT_DIR
+from src import DEFAULT_MODEL_PATH
 from src.FaceRecognizer import FaceRecognizer
 
 
 class CameraFaceDetector(FaceRecognizer):
-    def run(self, model_path):
+    def run(self, model_path, capture_index=0):
         """
-        It loads the model, captures the video from the webcam, and then runs the model on the video
-        frames
+        We load the model, initialize the video capture, loop over the frames from the video stream,
+        grab the current frame, detect faces, print the face detections, show the frame, and if the `q`
+        key was pressed, break from the loop
         
-        :param model_path: The path to the model file, defaults to ../output/model.xml (optional)
+        :param model_path: The path to the trained model
         """
         self.load_model(model_path)
 
         # initialize the video capture
-        cap = cv2.VideoCapture(0)
+        cap = cv2.VideoCapture(capture_index)
 
         # loop over the frames from the video stream
         while True:
@@ -43,4 +44,6 @@ class CameraFaceDetector(FaceRecognizer):
 
 
 if __name__ == "__main__":
-    CameraFaceDetector().run(model_path=OUTPUT_DIR + "/model")
+    input_model_path = input(f"model_path ({DEFAULT_MODEL_PATH}): ") or DEFAULT_MODEL_PATH
+    input_capture_index = input(f"capture_index (0):") or 0
+    CameraFaceDetector().run(model_path=input_model_path, capture_index=input_capture_index)
