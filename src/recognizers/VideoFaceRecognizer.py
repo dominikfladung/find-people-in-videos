@@ -1,10 +1,11 @@
 """
-This class is a subclass of the FaceDetector class, and it is used to detect faces in a video.
+This class is a subclass of the FaceRecognizer class, and it is used to detect faces in a video.
 """
 import cv2
 import imageio
 from progress.bar import Bar
 
+from src import DEFAULT_MODEL_PATH
 from src.FaceRecognizer import FaceRecognizer
 
 
@@ -61,4 +62,5 @@ class VideoFaceRecognizer(FaceRecognizer):
 
 if __name__ == "__main__":
     input_path = input('Enter the path to the video file: ')
-    VideoFaceRecognizer().run(filename=input_path)
+    input_model_path = input(f"model_path ({DEFAULT_MODEL_PATH}): ") or DEFAULT_MODEL_PATH
+    VideoFaceRecognizer().run(filename=input_path, model_path=input_model_path)

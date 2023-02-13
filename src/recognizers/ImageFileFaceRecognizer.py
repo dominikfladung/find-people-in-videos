@@ -1,11 +1,11 @@
 """
-It's a face detector that uses the OpenCV library to detect faces in images
+It's a face Recognizer that uses the OpenCV library to detect faces in images
 """
 from src import DEFAULT_MODEL_PATH, DEFAULT_IMAGES_PATH
-from src.detectors.ImageFileGenericFaceDetector import ImageFileGenericFaceDetector
+from src.recognizers.ImageFileGenericFaceRecognizer import ImageFileGenericFaceRecognizer
 
 
-class ImageFileFaceDetector(ImageFileGenericFaceDetector):
+class ImageFileFaceRecognizer(ImageFileGenericFaceRecognizer):
     def run(self, model_path=None, path=None):
         """
         It loads the model, then for each image in the folder, it detects faces and prints the results,
@@ -25,4 +25,4 @@ class ImageFileFaceDetector(ImageFileGenericFaceDetector):
 if __name__ == "__main__":
     input_images_path = input(f"path ({DEFAULT_IMAGES_PATH}): ") or DEFAULT_IMAGES_PATH
     input_model_path = input(f"model_path ({DEFAULT_MODEL_PATH}): ") or DEFAULT_MODEL_PATH
-    ImageFileFaceDetector().run(path=input_images_path, model_path=input_model_path)
+    ImageFileFaceRecognizer().run(path=input_images_path, model_path=input_model_path)

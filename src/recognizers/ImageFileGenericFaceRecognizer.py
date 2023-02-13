@@ -1,10 +1,6 @@
 """
-It's a face detector that uses the OpenCV library to detect faces in images
+It's a face Recognizer that uses the OpenCV library to detect faces in images
 """
-import os
-
-import cv2
-
 from src import CASCADE_DIR, DEFAULT_IMAGES_PATH
 from src.FaceDetection import FaceDetection
 from src.FaceRecognizer import FaceRecognizer
@@ -12,7 +8,7 @@ import os
 import cv2
 
 
-class ImageFileGenericFaceDetector(FaceRecognizer):
+class ImageFileGenericFaceRecognizer(FaceRecognizer):
     def run(self, path):
         """
         It takes a path to an image folder, and returns a score based on how many frames contain a face
@@ -76,5 +72,5 @@ if __name__ == "__main__":
     input_images_path = input(f"path ({DEFAULT_IMAGES_PATH}): ") or DEFAULT_IMAGES_PATH
     input_cascade_classifier = input(f"Cascade ({default_cascade_classifier}): ") or default_cascade_classifier
 
-    detector = ImageFileGenericFaceDetector(cascade_classifier=input_cascade_classifier, debugging=True)
-    detector.run(path=input_images_path)
+    Recognizer = ImageFileGenericFaceRecognizer(cascade_classifier=input_cascade_classifier, debugging=True)
+    Recognizer.run(path=input_images_path)

@@ -73,7 +73,7 @@ class FaceRecognizer:
         writes the name of the person and the confidence level on the image
 
         :param image: The image to draw the detection on
-        :param detection: The detection object returned by the detector
+        :param detection: The detection object returned by the Recognizer
         """
         # draw the label and confidence on the image
         self.rectangle_around_face(image, detection)
@@ -87,7 +87,7 @@ class FaceRecognizer:
         image
         
         :param image: The image to draw the rectangle on
-        :param detection: The detection object returned by the detector
+        :param detection: The detection object returned by the Recognizer
         """
         cv2.rectangle(image, (detection.x, detection.y), (detection.x + detection.w, detection.y + detection.h),
                       (0, 255, 0), 2)

@@ -1,15 +1,15 @@
 """
-It takes a YouTube video URL, downloads the video, and then uses the `VideoFaceDetector` class to
+It takes a YouTube video URL, downloads the video, and then uses the `VideoFaceRecognizer` class to
 detect faces in the video
 """
 import re
 
 from src import DEFAULT_MODEL_PATH
-from src.detectors.VideoFaceDetector import VideoFaceRecognizer
+from src.recognizers.VideoFaceRecognizer import VideoFaceRecognizer
 from src.utils.YoutubeDownloader import YoutubeDownloader
 
 
-class YoutubeVideoFaceDetector:
+class YoutubeVideoFaceRecognizer:
     @staticmethod
     def make_url_filename_safe(url):
         """
@@ -37,4 +37,4 @@ class YoutubeVideoFaceDetector:
 if __name__ == "__main__":
     input_url = input("Url: ")
     input_model_path = input(f"model_path ({DEFAULT_MODEL_PATH}): ") or DEFAULT_MODEL_PATH
-    YoutubeVideoFaceDetector().run(input_url, model_path=input_model_path)
+    YoutubeVideoFaceRecognizer().run(input_url, model_path=input_model_path)

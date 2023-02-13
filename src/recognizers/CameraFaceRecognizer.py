@@ -1,5 +1,5 @@
 """
-It's a face detector that uses a camera to detect faces
+It's a face Recognizer that uses a camera to detect faces
 """
 
 import cv2
@@ -8,13 +8,14 @@ from src import DEFAULT_MODEL_PATH
 from src.FaceRecognizer import FaceRecognizer
 
 
-class CameraFaceDetector(FaceRecognizer):
+class CameraFaceRecognizer(FaceRecognizer):
     def run(self, model_path, capture_index=0):
         """
         We load the model, initialize the video capture, loop over the frames from the video stream,
         grab the current frame, detect faces, print the face detections, show the frame, and if the `q`
         key was pressed, break from the loop
         
+        :param capture_index: the index of VideoCapture
         :param model_path: The path to the trained model
         """
         self.load_model(model_path)
@@ -46,4 +47,4 @@ class CameraFaceDetector(FaceRecognizer):
 if __name__ == "__main__":
     input_model_path = input(f"model_path ({DEFAULT_MODEL_PATH}): ") or DEFAULT_MODEL_PATH
     input_capture_index = input(f"capture_index (0):") or 0
-    CameraFaceDetector().run(model_path=input_model_path, capture_index=input_capture_index)
+    CameraFaceRecognizer().run(model_path=input_model_path, capture_index=input_capture_index)
