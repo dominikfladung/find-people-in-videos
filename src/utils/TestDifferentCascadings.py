@@ -3,15 +3,16 @@ import os
 from src import CASCADE_DIR, TRAINDATA_DIR, OUTPUT_DIR
 from src.recognizers.ImageFileGenericFaceRecognizer import ImageFileGenericFaceRecognizer
 
-filenames = os.listdir(CASCADE_DIR)
+if __name__ == "__main__":
+    filenames = os.listdir(CASCADE_DIR)
 
-for filename in filenames:
-    if filename.endswith('.xml'):
-        cascade = filename.split(".")[0]
-        cascade_classifier = f'{CASCADE_DIR}/{cascade}.xml'
-        Recognizer = ImageFileGenericFaceRecognizer(cascade_classifier=cascade_classifier, debugging=False)
-        score = Recognizer.run(path=TRAINDATA_DIR + "/dominik_fladung")
-        print(f'{filename} - Score: {str(score)}')
+    for filename in filenames:
+        if filename.endswith('.xml'):
+            cascade = filename.split(".")[0]
+            cascade_classifier = f'{CASCADE_DIR}/{cascade}.xml'
+            recognizer = ImageFileGenericFaceRecognizer(cascade_classifier=cascade_classifier, debugging=False)
+            score = recognizer.run(path=TRAINDATA_DIR + "/dominik_fladung")
+            print(f'{filename} - Score: {str(score)}')
 
 # haarcascade_eye.xml - Score: 49
 # haarcascade_eye_tree_eyeglasses.xml - Score: 37
