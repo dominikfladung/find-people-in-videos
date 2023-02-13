@@ -7,10 +7,12 @@ import cv2
 
 from src import CASCADE_DIR, DEFAULT_IMAGES_PATH
 from src.FaceDetection import FaceDetection
-from src.detectors.ImageFileFaceDetector import ImageFileFaceDetector
+from src.FaceRecognizer import FaceRecognizer
+import os
+import cv2
 
 
-class ImageFileGenericFaceDetector(ImageFileFaceDetector):
+class ImageFileGenericFaceDetector(FaceRecognizer):
     def run(self, path):
         """
         It takes a path to an image folder, and returns a score based on how many frames contain a face
@@ -37,6 +39,36 @@ class ImageFileGenericFaceDetector(ImageFileFaceDetector):
                 self.show_frame(frame)
 
         return score
+
+    @staticmethod
+    def show_frame(frame):
+        """
+        It takes a frame, resizes it to 800x800, and displays it
+        
+        :param frame: The frame to be displayed
+        """
+        ratio = frame.shape[1] / frame.shape[0]
+        height = 800
+        width = round(height * ratio)
+        smaller_frame = cv2.resize(frame, (width, height))
+        cv2.imshow("Frame", smaller_frame)
+        cv2.waitKey()
+
+    @staticmethod
+    def get_images(path):
+        """
+        It takes a path to a directory, reads all the images in that directory, and returns a list of
+        images
+
+        :param path: The path to the folder containing the images
+        :return: A list of images
+        """
+        files = os.listdir(path)
+        images = []
+        for file in files:
+            images.append(cv2.imread(path + "/" + file))
+
+        return images
 
 
 if __name__ == "__main__":

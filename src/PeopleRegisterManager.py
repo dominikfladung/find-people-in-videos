@@ -11,6 +11,10 @@ class PeopleRegisterManager:
         self.people_register = self.get_people_register()
 
     def get_people_register(self):
+        """
+        If the file exists, open it and return the contents
+        :return: A dictionary of people.
+        """
         if not os.path.isfile(self.register_json_path):
             return None
 
