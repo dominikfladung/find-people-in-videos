@@ -4,11 +4,12 @@ It's a face detector that uses the OpenCV library to detect faces in images
 import os
 import cv2
 
+from src import TRAINDATA_DIR
 from src.FaceRecognizer import FaceRecognizer
 
 
 class ImageFileFaceDetector(FaceRecognizer):
-    def run(self, model_path, path):
+    def run(self, model_path=None, path=None):
         """
         It loads the model, then for each image in the folder, it detects faces and prints the results,
         then it resizes the image and displays it
@@ -48,5 +49,5 @@ class ImageFileFaceDetector(FaceRecognizer):
 
 
 if __name__ == "__main__":
-    images_path = input("Path: ")
-    ImageFileFaceDetector().run(path=images_path)
+    #images_path = input("Path: ")
+    ImageFileFaceDetector().run(path=TRAINDATA_DIR + "/emilia_clarke")

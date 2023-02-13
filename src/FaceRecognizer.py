@@ -3,7 +3,7 @@ The Recognizer class is a base class that contains the methods for handling peop
 """
 import cv2
 
-from src import CASCADE_DIR
+from src import CASCADE_DIR, OUTPUT_DIR
 from src.FaceRecognition import FaceRecognition
 from src.PeopleRegisterManager import PeopleRegisterManager
 
@@ -15,12 +15,16 @@ class FaceRecognizer:
         self.people_register_manager = PeopleRegisterManager()
         self.debugging = debugging
 
-    def load_model(self, output_path):
+    def load_model(self, output_path=OUTPUT_DIR + "/model"):
         """
         The function reads the model from the given path and loads it into the recognizer.
 
         :param output_path: The path to the model file, defaults to ../output/model.xml (optional)
         """
+
+        if output_path is None:
+            output_path = OUTPUT_DIR + "/model"
+
         # load the model from the given path
         self.people_register_manager.load(output_path + "/people_register.json")
         self.recognizer.read(output_path + "/model.xml")
